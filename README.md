@@ -60,6 +60,9 @@ WHERE c.categoryname = 'Electronics';</i>
 
 The following SQL will create the tables we need.  Only changes were a few data type choices, and a join table for categories and products (many to many).
 
+!!!!!!!!!!!IMPORTANT!!!!!!!!   Database is "CS407Project" with APP and pass
+
+
 create table "APP".ACCOUNTS
 (
 	ID INTEGER not null primary key,
