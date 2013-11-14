@@ -58,3 +58,37 @@ WHERE c.categoryname = 'Electronics';</i>
 </p>
 
 
+The following SQL will create the tables we need.  Only changes were a few data type choices, and a join table for categories and products (many to many).
+
+create table "APP".ACCOUNTS
+(
+	ID INTEGER not null primary key,
+	USERNAME VARCHAR(100) not null,
+	EMAIL VARCHAR(250) not null,
+	PW_HASH VARCHAR(250) not null,
+	PERMISSION_LEVEL SMALLINT default 0 not null
+);
+
+create table "APP".PRODUCTS
+(
+	ID INTEGER not null primary key,
+	PRODUCTNAME VARCHAR(200) not null,
+	PRICE DECIMAL(5) not null,
+	DESCRIPTION VARCHAR(500)
+);
+
+create table "APP".CATEGORIES
+(
+	CID INTEGER not null primary key,
+	CATEGORYNAME VARCHAR(200) not null
+);
+
+create table "APP".PRODUCTS_CATEGORIES
+(
+	PID INTEGER not null,
+	CID INTEGER not null,
+	PRIMARY KEY(PID, CID),
+	FOREIGN KEY(PID) REFERENCES PRODUCTS(ID),
+	FOREIGN KEY(CID) REFERENCES CATEGORIES(CID)
+);
+
