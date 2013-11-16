@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,16 +32,16 @@ public class Products implements Serializable {
     private int id = 0;
     
     @Column(name="PRODUCTNAME")
-    private String productName = null;
+    private String productName = "";
     
     @Column(name="PRICE")
     private float price = 0;
     
     @Column(name="DESCRIPTION")
-    private String description = null;
+    private String description = "";
     
     @ManyToMany
-    @JoinTable(name="PRODUCTS_CATEGORIES", joinColumns=@JoinColumn(name="id", referencedColumnName="PID"), 
+    @JoinTable(name="PRODUCTS_CATEGORIES", joinColumns=@JoinColumn(name="PID", referencedColumnName="ID"), 
             inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="CID"))
     private Set<Categories> categories = new HashSet();
     

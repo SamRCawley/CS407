@@ -9,11 +9,11 @@
     <h:body>
         <h:form>
             <h:outputText value="Search"/>
-            <h:inputText id="productName" value="#{Products.productName}">
+            <h:inputText id="productname" value="#{products.productName}">
                 <f:ajax event="keyup" render="datatable"/>
             </h:inputText>
             <br/>
-            <h:dataTable id="datatable" value="#{productController.matchingProducts}" var="product" border="3" cellpadding="2" cellspacing="2">
+            <h:dataTable id="datatable" value="#{productSearch.matchingProducts}" var="product" border="3" cellpadding="2" cellspacing="2">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Product Name" />
@@ -33,6 +33,18 @@
                         <h:outputText value="Description"/>
                     </f:facet> 
                     <h:outputText value="#{product.description}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Categories"/>
+                    </f:facet> 
+                    <h:panelGroup>
+                        <h:dataTable id="categorytable" value="#{product.categories}" var="category" border="0" cellpadding="0" cellspacing="0">
+                            <h:column>
+                                <h:outputText value="#{category.categoryName}"></h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
                 </h:column>
             </h:dataTable>
         </h:form>
