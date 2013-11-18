@@ -23,7 +23,8 @@
             <h:inputText id="username" style="margin-right: 5px; width: 100px" />
             <h:outputLabel for="password" value="Password: " />
             <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" />
-            <h:button value="Login" style="padding: 0px 5px 0px 5px;"><!-- Login event --></h:button>
+            <h:commandButton action="#{Login.validateAccount}" value="Conditional faces xml">
+            </h:commandButton>
         </h:form>
     </div>
     
