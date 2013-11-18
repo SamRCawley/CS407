@@ -1,0 +1,30 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <!-- Navigation Items, mainly product categories -->
+    <div id="navbox">
+        <!-- TODO: Loop over product categories in database
+            Create a link for each one that either:
+            A - Calls an ajax function to re-populate our data table
+            B - Loads a new content page into our content wrapper
+        
+            Use the 'navitem' css class
+        -->
+        <h:outputText value="Navbar" />
+    </div>
+    
+    <div id="loginbox">
+        <!-- Handle login handshake, reload page with account in session -->
+        <h:form>
+            <h:outputLabel for="username" value="Username: " />
+            <h:inputText id="username" style="margin-right: 5px; width: 100px" />
+            <h:outputLabel for="password" value="Password: " />
+            <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" />
+            <h:button value="Login" style="padding: 0px 5px 0px 5px;"><!-- Login event --></h:button>
+        </h:form>
+    </div>
+    
+</ui:composition>

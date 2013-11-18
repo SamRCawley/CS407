@@ -1,0 +1,57 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <!-- Page Content goes here -->
+    
+    <h:form>
+        <div id="searchbar">
+            <h:outputText value="Product Search: "/>
+            <h:inputText id="productname" value="#{products.productName}">
+                <f:ajax event="keyup" render="datatable"/>
+            </h:inputText>
+        </div>
+        
+        <div class="productgrid">
+            <h:dataTable id="datatable" value="#{productSearch.matchingProducts}"
+                         var="product" border="3" cellpadding="2" cellspacing="2">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Product Name" />
+                    </f:facet> 
+                    <h:outputText value="#{product.productName}" ></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.price}"></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.description}"></h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Categories"/>
+                    </f:facet> 
+                    <h:panelGroup>
+                        <h:dataTable id="categorytable" value="#{product.categories}" var="category" border="0" cellpadding="0" cellspacing="0">
+                            <h:column>
+                                <h:outputText value="#{category.categoryName}"></h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:column>
+            </h:dataTable>
+        </div>
+        
+    </h:form>
+    
+</ui:composition>

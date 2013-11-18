@@ -1,0 +1,88 @@
+/* 
+    Document   : main
+    Created on : Nov 17, 2013, 2:40:09 PM
+    Author     : Jason
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* {
+    margin: 0; padding: 0;
+}
+
+html, body {
+    margin: 5px 25px 5px 25px;
+    height: 100%;
+    font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -1.5em; /* the bottom margin is the negative value of the footer's height */
+}
+
+#header {
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 5em;
+    background-color: #cccccc;
+    margin-bottom: 10px;
+}
+
+#navbar {
+    display: block;
+    width: 100%;
+    height: 1.75em;
+    vertical-align: middle;
+    /* background-color: #cccccc; */
+    margin-bottom: 10px;
+}
+
+#navbox {
+    clear: both;
+    width: 50%;
+    float: left;
+}
+
+.navitem {
+    text-decoration: none;
+}
+
+#loginbox {
+    text-align: right;
+    width: 50%;
+    float: right;
+}
+
+#content {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#searchbar {
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.productgrid {
+    display: block;
+    margin: 0 auto;
+}
+
+.productgrid table, td, tr, th {
+    text-align: center;
+    padding: 5px;
+}
+
+#footer {
+    display: block;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 1.5em;
+    background-color: #cccccc;
+}
