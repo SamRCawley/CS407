@@ -51,12 +51,11 @@ public class Login {
             return false;
     }
     
-    public String validateAccount()
-    {
+    public String validateAccount() {
         List<Account> accounts = new ArrayList();
         if(!usernameExists())
             return "noSuchUsername";
-        else{
+        else {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             String selectSQL = "select a from Account a where a.username = :username and a.pw_hash = :password_hash"; 
             //Something with passwords hashing generation

@@ -32,8 +32,7 @@ public class productSearch {
     @ManagedProperty(value = "#{products}")
     private Products product;
     
-    public List getMatchingProducts()
-    {
+    public List getMatchingProducts() {
         List<Products> products = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         String selectSQL = "select p from Products p where p.productName like :name"; 
@@ -46,7 +45,6 @@ public class productSearch {
         }
         return products;
     }
-    
     
     public Products getProduct() {
         return product;

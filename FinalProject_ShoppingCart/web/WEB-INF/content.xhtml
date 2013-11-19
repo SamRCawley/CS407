@@ -7,6 +7,10 @@
     <!-- Page Content goes here -->
     
     <h:form>
+        <div id="cart">
+            <h:link value="Shopping Cart" /> <!-- Link to user's cart -->
+        </div>
+        
         <div id="searchbar">
             <h:outputText value="Product Search: "/>
             <h:inputText id="productname" value="#{products.productName}">
@@ -26,17 +30,11 @@
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Price"/>
-                    </f:facet> 
-                    <h:outputText value="#{product.price}"></h:outputText>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
                         <h:outputText value="Description"/>
                     </f:facet> 
                     <h:outputText value="#{product.description}"></h:outputText>
                 </h:column>
+                
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Categories"/>
@@ -49,6 +47,21 @@
                         </h:dataTable>
                     </h:panelGroup>
                 </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.price}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cart Action" />
+                    </f:facet>
+                    <h:button value="Add to Cart" /> <!-- Need to handle adding to cart -->
+                </h:column>
+                
             </h:dataTable>
         </div>
         

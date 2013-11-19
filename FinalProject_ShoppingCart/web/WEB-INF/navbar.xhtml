@@ -6,14 +6,17 @@
     
     <!-- Navigation Items, mainly product categories -->
     <div id="navbox">
+        <h:outputText value="Product Categories: " />
         <!-- TODO: Loop over product categories in database
-            Create a link for each one that either:
-            A - Calls an ajax function to re-populate our data table
-            B - Loads a new content page into our content wrapper
+            Create a link for each one that uses our search controller
         
             Use the 'navitem' css class
         -->
-        <h:outputText value="Navbar" />
+        <h:dataTable>
+            <h:column>
+                <h:outputLink value="" />
+            </h:column>
+        </h:dataTable>
     </div>
     
     <div id="loginbox">
