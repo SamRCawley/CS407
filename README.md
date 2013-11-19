@@ -3,6 +3,8 @@ CS407
 
 CS407 Project
 
+<hr />
+
 <h3>Database Schema:</h3>
 
 <b>Tables (PK = Primary Key, FK = Foreign Key, NN = Not Null, UQ = Unique)</b>
@@ -57,41 +59,49 @@ ON c.cid = p.id
 WHERE c.categoryname = 'Electronics';</i>
 </p>
 
+<hr />
 
-The following SQL will create the tables we need.  Only changes were a few data type choices, and a join table for categories and products (many to many).
+<p>The following SQL will create the tables we need.  Only changes were a few data type choices, and a join table for categories and products (many to many).</p>
 
-!!!!!!!!!!!IMPORTANT!!!!!!!!   Database is "CS407Project" with APP and pass
+<b>!!!!!!!!!!!IMPORTANT!!!!!!!!   Database is "CS407Project" with APP and pass</b>
 
-
-create table "APP".ACCOUNTS
+<p>create table "APP".ACCOUNTS
 (
 	ID INTEGER not null primary key,
 	USERNAME VARCHAR(100) not null,
 	EMAIL VARCHAR(250) not null,
 	PW_HASH VARCHAR(250) not null,
 	PERMISSION_LEVEL SMALLINT default 0 not null
-);
+);</p>
 
-create table "APP".PRODUCTS
+<p>create table "APP".PRODUCTS
 (
 	ID INTEGER not null primary key,
 	PRODUCTNAME VARCHAR(200) not null,
 	PRICE DECIMAL(5) not null,
 	DESCRIPTION VARCHAR(500)
-);
+);</p>
 
-create table "APP".CATEGORIES
+<p>create table "APP".CATEGORIES
 (
 	CID INTEGER not null primary key,
 	CATEGORYNAME VARCHAR(200) not null
-);
+);</p>
 
-create table "APP".PRODUCTS_CATEGORIES
+<p>create table "APP".PRODUCTS_CATEGORIES
 (
 	PID INTEGER not null,
 	CID INTEGER not null,
 	PRIMARY KEY(PID, CID),
 	FOREIGN KEY(PID) REFERENCES PRODUCTS(ID),
 	FOREIGN KEY(CID) REFERENCES CATEGORIES(CID)
-);
+);</p>
 
+<hr />
+
+<b>Thoughts from todays lecture (11/18/13)</b>
+
+<ul>
+<li>JAAS authentication framework for admin panel access</li>
+<li>Message Digest to store account passwords using JCE</li>
+</ul>
