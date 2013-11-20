@@ -78,7 +78,7 @@ WHERE c.categoryname = 'Electronics';</i>
 (
 	ID INTEGER not null primary key,
 	PRODUCTNAME VARCHAR(200) not null,
-	PRICE DECIMAL(5) not null,
+	PRICE DECIMAL(5,2) not null,
 	DESCRIPTION VARCHAR(500)
 );</p>
 
