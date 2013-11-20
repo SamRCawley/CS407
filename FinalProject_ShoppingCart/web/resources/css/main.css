@@ -64,10 +64,18 @@ html, body {
     margin-bottom: 10px;
 }
 
-#searchbar, #cart {
+#searchbar{
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#cart {
     display: block;
     text-align: right;
     margin-bottom: 10px;
+    float: right;
 }
 
 .productgrid {
