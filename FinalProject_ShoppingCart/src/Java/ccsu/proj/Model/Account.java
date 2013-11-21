@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @ManagedBean
 @Entity
 @Table(name="Accounts")
-public class Account implements Serializable{
+public class Account implements Serializable {
     @Id
     @Column(name="ID")
     private int id = 0;
@@ -35,58 +35,46 @@ public class Account implements Serializable{
     @Column(name="PERMISSION_LEVEL")
     private short permission_level = 0;
     
-    public Account()
-    {
+    public Account() {
     }
     
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
     
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
     
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
     
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
     
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
     
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
     
-    public String getPW_Hash()
-    {
+    public String getPW_Hash() {
         return pw_hash;
     }
     
-    public void setPW_Hash(String pw_hash)
-    {
+    public void setPW_Hash(String pw_hash) {
         this.pw_hash = pw_hash;
     }
     
-    public int getPermission_Level()
-    {
+    public int getPermission_Level() {
         return permission_level;
     }
     
-    public void setPermission_Level(short permission_level)
-    {
+    public void setPermission_Level(short permission_level) {
         this.permission_level = permission_level;
-    }
-    
+    } 
 }

@@ -48,54 +48,43 @@ public class Products implements Serializable {
     
     public Products(){}
     
-    public int getID()
-    {
+    public int getID() {
         return id;
     }
     
-    public void setID(int id)
-    {
+    public void setID(int id) {
         this.id = id;
     }
     
-    public String getProductName()
-    {
+    public String getProductName() {
         return productName;
     }
     
-    public void setProductName(String productName)
-    {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
     
-    public float getPrice()
-    {
+    public float getPrice() {
         return price;
     }
     
-    public void setPrice(float price)
-    {
+    public void setPrice(float price) {
         this.price = price;
     }
     
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
     
-    public void setDescription(String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
     
-    public Set<Categories> getCategories()
-    {
+    public Set<Categories> getCategories() {
         return categories;
     }
     
-    public void setCategories(Set<Categories> categories)
-    {
+    public void setCategories(Set<Categories> categories) {
         this.categories = categories;
     }
-
 }
