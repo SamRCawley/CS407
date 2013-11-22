@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>The CS 407 Store</title>
+        <h:outputStylesheet library="css" name="main.css"  />
+    </h:head>
+    <h:body>
+        
+        <div id="wrapper">
+            
+            <div id="header">
+                <ui:include src="/WEB-INF/templates/header.xhtml" />
+            </div>
+            
+            <div id="navbar">
+                <ui:include src="/WEB-INF/templates/navbar.xhtml" />
+            </div>
+            
+            <div id="content">
+                <!-- TODO:
+                    Change interface based on admin/user - possibly use another page for login
+                -->
+                <ui:include src="/WEB-INF/templates/content.xhtml" />
+            </div>
+            
+            <div id="footer">
+                <ui:include src="/WEB-INF/templates/footer.xhtml" />
+            </div>
+            
+        </div>
+        
+    </h:body>
+</html>
