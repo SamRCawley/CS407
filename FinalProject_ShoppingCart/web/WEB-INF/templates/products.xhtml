@@ -55,7 +55,7 @@
                     <f:facet name="header">
                         <h:outputText value="Cart Action" />
                     </f:facet>
-                    <h:button value="Add to Cart" /> <!-- Need to handle adding to cart -->
+                    <h:commandButton value="Add to Cart" action="#{shoppingCart.addItemToCart(product)}" />
                 </h:column>
                 
             </h:dataTable>

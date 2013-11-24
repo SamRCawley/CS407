@@ -33,14 +33,17 @@ tr {
    border-bottom: 1px dotted #000;
 }
 
-/* This will remove the border of the last row
+/* This will remove the border of the last row */
 tr:last-child {
    border-bottom: none;
 }
-*/
 
 .categorytable {
     padding: 5px;
     width: 100%;
+}
+
+.navHeader {
+    font-weight: bold;
 }
 

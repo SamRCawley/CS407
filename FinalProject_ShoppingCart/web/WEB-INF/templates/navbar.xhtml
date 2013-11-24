@@ -6,25 +6,26 @@
     
     <!-- Navigation Items, mainly product categories -->
     <div id="navbox">
-        <h:outputText value="Product Categories: " />
-        <!-- TODO: Loop over product categories in database
-            Create a link for each one that uses our search controller
-        
-            Use the 'navitem' css class
-        -->
-        
-        <h:dataTable>
-            <h:column>
-                <h:outputLink value="" />
-            </h:column>
-        </h:dataTable>
+        <h:outputText styleClass="navHeader" value="Product Categories: " />
+        <ul>
+            <!-- Link to all products (products.xhtml -->
+            <li><h:link value='All Products' outcome="index" /></li>
+            <!-- TODO: Loop over product categories in database
+                Create a link for each one that uses our search controller
+            -->
+        </ul>
     </div>
     
     <hr />
     
     <div id="cart">
-        <h:outputText value="Store Actions: " />
-        <h:link value="Shopping Cart" /> <!-- Link to user's cart -->
+        <h:outputText styleClass="navHeader" value="Store Actions: " />
+        <ul>
+            <!-- Link to user's cart -->
+            <li><h:link value="Shopping Cart" outcome="index">
+                <f:param name="view" value="cart" />
+            </h:link></li>
+        </ul>
     </div>
     
 </ui:composition>

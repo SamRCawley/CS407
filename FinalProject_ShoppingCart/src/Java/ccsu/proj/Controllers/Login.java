@@ -84,4 +84,11 @@ public class Login {
         }
     }
     
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+    
+    public Account getAccount() {
+        return this.account;
+    }
 }
