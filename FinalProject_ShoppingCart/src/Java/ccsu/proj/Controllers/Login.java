@@ -56,21 +56,15 @@ public class Login {
     
     public String validateAccount() {
         List<Account> accounts = new ArrayList();
-        if(!usernameExists())
-            return "noSuchUsername";
-        else {
+        if(usernameExists()) {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
-            String selectSQL = "select a from Account a where a.username = :username and a.pw_hash = :password_hash";
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-            String pw = ec.getRequestParameterMap().get("password");
-            SHA1MessageDigest sha1 = new SHA1MessageDigest();
-            String pw_hash = sha1.digestMessage(pw);
-            /* Maybe? */
+            String selectSQL =
+                    "select a from Account a where a.username = :username and a.pw_hash = :password_hash";
             
             try {
                 Query selectQuery = entityManager.createQuery(selectSQL);
                 selectQuery.setParameter("username", account.getUsername());
-                selectQuery.setParameter("password_hash", pw_hash); //hashed password
+                selectQuery.setParameter("password_hash", account.getPW_Hash());
                 accounts = selectQuery.getResultList();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -78,10 +72,8 @@ public class Login {
             if(accounts.size() == 1) {
                 account = accounts.get(0);
                 return "authenticated";
-            }
-            else
-                return "invalidPass";
-        }
+            } else { return "invalidPass"; }
+        } else { return "noSuchUsername"; }
     }
     
     public void setAccount(Account account) {

@@ -4,6 +4,7 @@
  */
 package ccsu.proj.Model;
 
+import ccsu.proj.Classes.SHA1MessageDigest;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -68,8 +69,10 @@ public class Account implements Serializable {
         return pw_hash;
     }
     
-    public void setPW_Hash(String pw_hash) {
-        this.pw_hash = pw_hash;
+    public void setPW_Hash(String pw) {
+        SHA1MessageDigest sha1 = new SHA1MessageDigest();
+        String hash = sha1.digestMessage(pw);
+        this.pw_hash = hash;
     }
     
     public int getPermission_Level() {

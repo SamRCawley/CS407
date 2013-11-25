@@ -33,7 +33,7 @@ public class ShoppingCart {
     public List getShoppingCartItems() {
         List<Products> products = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        //Get cart items from session
+        //Get cart items from context
         return products;
     }
     

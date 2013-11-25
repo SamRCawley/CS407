@@ -11,9 +11,9 @@
         <!-- Handle login handshake, reload page with account in session -->
         <h:form>
             <h:outputLabel for="username" value="Username: " />
-            <h:inputText id="username" style="margin-right: 5px; width: 100px" />
+            <h:inputText id="username" style="margin-right: 5px; width: 100px" value="${account.username}" />
             <h:outputLabel for="password" value="Password: " />
-            <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" />
+            <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" value="${account.PW_Hash}" />
             <h:commandButton action="#{login.validateAccount}" value="Login">
             </h:commandButton>
         </h:form>
