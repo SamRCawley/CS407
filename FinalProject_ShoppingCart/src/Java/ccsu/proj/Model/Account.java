@@ -6,6 +6,7 @@ package ccsu.proj.Model;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import javax.persistence.Table;
 @ManagedBean
 @Entity
 @Table(name="Accounts")
+@SessionScoped
 public class Account implements Serializable {
     @Id
     @Column(name="ID")
