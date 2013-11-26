@@ -4,7 +4,7 @@
  */
 package ccsu.proj.Model;
 
-import ccsu.proj.Classes.SHA1MessageDigest;
+import ccsu.proj.Security.SHA1MessageDigest;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
