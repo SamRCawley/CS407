@@ -26,6 +26,19 @@
 
 .productgrid {
     text-align: center;
+    min-height: 200px;
+}
+
+#cartTotal {
+    float: right;
+    font-weight: bold;
+}
+
+#cartMessage {
+    padding-top: 80px;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: bold;
 }
 
 .datatable {
