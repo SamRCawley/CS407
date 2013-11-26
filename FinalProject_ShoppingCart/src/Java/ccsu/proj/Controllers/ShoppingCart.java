@@ -68,4 +68,14 @@ public class ShoppingCart implements Serializable{
         }
         return saved;
     }
+    
+    public float getTotal()
+    {
+        float total = 0;
+        for(Products p : cart)
+        {
+            total += p.getPrice();
+        }
+        return total;
+    }
 }

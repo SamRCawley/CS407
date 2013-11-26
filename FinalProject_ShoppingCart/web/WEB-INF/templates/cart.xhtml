@@ -38,7 +38,7 @@
                     <f:facet name="header">
                         <h:outputText value="Price"/>
                     </f:facet> 
-                    <h:outputText value="#{product.price}"></h:outputText>
+                    <h:outputText value="#{product.price}" ><f:convertNumber type="currency"/></h:outputText>
                 </h:column>
                 
                 <h:column>
@@ -50,9 +50,15 @@
                         <f:param name="v" value="cart" />
                     </h:commandButton>
                 </h:column>
-                
+          
             </h:dataTable>
-        </div>
+            <div style="float:right">
+                <h:outputText value="Total: "/>
+                <h:outputText value="#{shoppingCart.getTotal()}"> 
+                    <f:convertNumber type="currency"/> 
+                </h:outputText>
+            </div>
+      </div>
     </h:form>
     <div style="height: 250px;">
         TODO: Cart items will be shown here. Refer to cart.xhtml
