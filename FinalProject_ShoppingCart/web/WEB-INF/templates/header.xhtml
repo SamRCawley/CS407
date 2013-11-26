@@ -10,19 +10,20 @@
     
     <div id="loginbox">
     <c:choose>
-        <c:when test="${login.account.id == 0}">
+        <c:when test="${login.account.id eq 0}">
             <h:form>
                 <h:outputLabel for="username" value="Username: " />
                 <h:inputText id="username" style="margin-right: 5px; width: 100px" value="${account.username}" />
                 <h:outputLabel for="password" value="Password: " />
                 <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" value="${account.PW_Hash}" />
-                <h:commandButton action="#{login.validateAccount}" value="Login">
-                </h:commandButton>
+                <h:commandButton action="#{login.validateAccount}" value="Login"></h:commandButton>
             </h:form>
         </c:when>
         <c:otherwise>
-            <h:outputText value="Welcome ${account.username}!   " />
-            <h:link value="Logout" /><!-- Should log user out -->
+            <h:form>
+                <h:outputText value="Welcome ${login.account.username}!     " />
+                <h:commandLink action="#{login.logout}" value="Logout" /><!-- Should log user out -->
+            </h:form>
         </c:otherwise>
     </c:choose>
     </div>

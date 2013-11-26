@@ -25,10 +25,6 @@
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">
-                    <!-- Conditional logic to check 'view' parameter value.
-                        If ?view=cart then we should include the cart.xhtml
-                        Else include products.xhtml
-                    -->
                     <ui:include src="/WEB-INF/templates/#{param['v'] == 'cart' ? 'cart' : 'products'}.xhtml" />
                 </ui:insert>
             </div>

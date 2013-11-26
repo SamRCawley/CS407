@@ -4,7 +4,6 @@
  */
 package ccsu.proj.Controllers;
 
-import ccsu.proj.Classes.SHA1MessageDigest;
 import ccsu.proj.Model.Account;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,6 @@ import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -40,7 +37,7 @@ public class Login {
         List<Account> accounts = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         String selectSQL = "select a from Account a where a.username = :username"; 
-        //Something with passwords hashing generation
+        
         try {
             Query selectQuery = entityManager.createQuery(selectSQL);
             selectQuery.setParameter("username", account.getUsername());
@@ -74,6 +71,10 @@ public class Login {
                 return "authenticated";
             } else return "invalidPass";
         } else return "noSuchUsername";
+    }
+    
+    public void logout() {
+        //Logout somehow
     }
     
     public void setAccount(Account account) {
