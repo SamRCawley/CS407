@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <h:form>
         
@@ -13,8 +14,10 @@
             </h:inputText>
         </div>
         
-        <div class="productgrid">
+        <div class="productGrid">
             <h:dataTable styleClass="datatable" id="datatable" value="#{productSearch.matchingProducts}" var="product">
+                <c:choose>
+                <c:when test="${productSearch.matchingProducts.size() gt 0}">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Product Name" />
@@ -55,8 +58,15 @@
                     </f:facet>
                     <h:commandButton value="Add to Cart" action="#{shoppingCart.addItemToCart(product)}" />
                 </h:column>
-                
+                </c:when>
+                <c:otherwise>
+                    <f:facet name="header">
+                        <h:outputText value="No items match your search" />
+                    </f:facet>
+                </c:otherwise>
+                </c:choose>
             </h:dataTable>
+            
         </div>
         
     </h:form>

@@ -13,10 +13,10 @@
         <c:when test="${login.account.id eq 0}">
             <h:form>
                 <h:outputLabel for="username" value="Username: " />
-                <h:inputText id="username" style="margin-right: 5px; width: 100px" value="${account.username}" />
+                <h:inputText id="username" styleClass="username" value="${account.username}" />
                 <h:outputLabel for="password" value="Password: " />
-                <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" value="${account.PW_Hash}" />
-                <h:commandButton action="#{login.validateAccount}" value="Login"></h:commandButton>
+                <h:inputSecret id="password" styleClass="password" value="${account.PW_Hash}" />
+                <h:commandButton action="#{login.validateAccount}" value="Login" />
             </h:form>
         </c:when>
         <c:otherwise>

@@ -24,7 +24,7 @@
     margin-bottom: 10px;
 }
 
-.productgrid {
+.productGrid {
     text-align: center;
     min-height: 200px;
 }
@@ -66,5 +66,15 @@ tr:last-child {
 
 .navHeader {
     font-weight: bold;
+}
+
+.username {
+    margin-right: 5px;
+    width: 100px;
+}
+
+.password {
+    margin-right: 5px;
+    width: 100px;
 }
 

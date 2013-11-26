@@ -76,6 +76,7 @@ public class Login implements Serializable{
     }
     
     public void logout() {
+        /* Invalidates the session and the account bean stored in it */
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
     
