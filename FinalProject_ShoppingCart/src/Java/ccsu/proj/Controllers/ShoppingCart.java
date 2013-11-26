@@ -55,7 +55,7 @@ public class ShoppingCart implements Serializable{
     public void removeItemFromCart(Products product) {
         for(Products p: cart)
         {
-            if(p.getID() == product.getID() && p.getQuantity() > 1)
+            if(p.getID() == product.getID())
             {
                 if(p.getQuantity() > 1)
                     p.setQuantity(p.getQuantity()-1);
