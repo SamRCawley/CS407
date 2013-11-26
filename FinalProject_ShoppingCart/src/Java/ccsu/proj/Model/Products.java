@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -44,6 +43,9 @@ public class Products implements Serializable {
     @JoinTable(name="PRODUCTS_CATEGORIES", joinColumns=@JoinColumn(name="PID", referencedColumnName="ID"), 
             inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="CID"))
     private Set<Categories> categories = new HashSet();
+    
+    @ManyToMany(mappedBy="orders")
+    private Set<Orders> orders = new HashSet();
     
     
     public Products(){}
@@ -86,5 +88,13 @@ public class Products implements Serializable {
     
     public void setCategories(Set<Categories> categories) {
         this.categories = categories;
+    }
+    
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+    
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
     }
 }

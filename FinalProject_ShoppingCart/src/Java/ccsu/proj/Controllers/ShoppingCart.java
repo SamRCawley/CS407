@@ -5,12 +5,13 @@
 package ccsu.proj.Controllers;
 
 
+import ccsu.proj.Model.Orders;
 import ccsu.proj.Model.Products;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -21,45 +22,47 @@ import javax.transaction.UserTransaction;
  * @author Jason
  */
 
-@ManagedBean()
+@ManagedBean
 public class ShoppingCart {
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
     private UserTransaction userTransaction;  
-    @ManagedProperty(value = "#{products}")
-    private Products product;
+    private Set<Products> cart = new HashSet();
     
-    public List getShoppingCartItems() {
-        List<Products> products = new ArrayList();
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        //Get cart items from context
-        return products;
+    public Set getShoppingCartItems() {
+        return cart;
     }
     
     public void addItemToCart(Products product) {
-        //Add a products to the cart. If it already exists,
-        //increment its quantity
+        cart.add(product);
     }
     
     public void removeItemFromCart(Products product) {
-        //Remove a product from the cart
-    }
-    
-    public void changeProductQuantity(Products product, int quantity) {
-        //Change the quantity of an individual item
+        cart.remove(product);
     }
     
     public void clearShoppingCart() {
-        //Clear the cart
+        cart.clear();
     }
     
-    public Products getProduct() {
-        return product;
-    }
-
-   
-    public void setProduct(Products product) {
-        this.product = product;
+    public String finalizeOrder(){
+        Orders order= new Orders();
+        java.util.Date utilDate = new Date();
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+        order.setDate(date);
+        order.setProducts(cart);
+        String saved = "error";
+        try {
+            userTransaction.begin();
+            EntityManager em = entityManagerFactory.createEntityManager();
+            em.persist(order);
+            userTransaction.commit();
+            em.close();
+            saved = "saved";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return saved;
     }
 }
