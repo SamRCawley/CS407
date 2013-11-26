@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,14 +37,15 @@ public class Orders implements Serializable {
     @GeneratedValue
     private Integer ordernum;
     
+    @Column(name = "ID")
+    private Integer id;
+    
     @Column(name = "DATE")
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    @ManyToMany
-    @JoinTable(name="ORDERS_PRODUCTS", joinColumns=@JoinColumn(name="ORDERNUM", referencedColumnName="ORDERNUM"), 
-            inverseJoinColumns=@JoinColumn(name="PID", referencedColumnName="ID"))
-    private Set<Products> products = new HashSet();
+    @OneToMany(mappedBy="orderNum")
+    private Set<OrdersProducts> ordersProducts = new HashSet();
 
     public Orders() {
     }
@@ -64,6 +66,14 @@ public class Orders implements Serializable {
     public void setOrdernum(Integer ordernum) {
         this.ordernum = ordernum;
     }
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getDate() {
         return date;
@@ -73,12 +83,12 @@ public class Orders implements Serializable {
         this.date = date;
     }
     
-    public Set<Products> getProducts() {
-        return products;
+    public Set<OrdersProducts> getOrdersProducts() {
+        return ordersProducts;
     }
     
-    public void setProducts(Set<Products> products) {
-        this.products = products;
+    public void setProducts(Set<OrdersProducts> ordersProducts) {
+        this.ordersProducts = ordersProducts;
     }
     
 }

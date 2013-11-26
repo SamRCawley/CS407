@@ -43,6 +43,13 @@
                 
                 <h:column>
                     <f:facet name="header">
+                        <h:outputText value="Quantity"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.quantity}" ></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
                         <h:outputText value="Cart Action" />
                     </f:facet>
                     
@@ -57,6 +64,10 @@
                 <h:outputText value="#{shoppingCart.getTotal()}"> 
                     <f:convertNumber type="currency"/> 
                 </h:outputText>
+                <br/>
+                <h:commandButton value="Submit Order" action="#{shoppingCart.finalizeOrder}">
+                        <f:param name="v" value="cart" />
+                </h:commandButton>
             </div>
       </div>
     </h:form>

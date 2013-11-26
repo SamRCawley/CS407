@@ -14,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -44,9 +46,11 @@ public class Products implements Serializable {
             inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="CID"))
     private Set<Categories> categories = new HashSet();
     
-    @ManyToMany(mappedBy="products")
-    private Set<Orders> orders = new HashSet();
+    @OneToMany(mappedBy="product")
+    private Set<OrdersProducts> ordersProducts = new HashSet();
     
+    @Transient
+    private int quantity = 1;
     
     public Products(){}
     
@@ -90,11 +94,20 @@ public class Products implements Serializable {
         this.categories = categories;
     }
     
-    public Set<Orders> getOrders() {
-        return orders;
+    public Set<OrdersProducts> getOrders() {
+        return ordersProducts;
     }
     
-    public void setOrders(Set<Orders> orders) {
-        this.orders = orders;
+    public void setOrders(Set<OrdersProducts> ordersProducts) {
+        this.ordersProducts = ordersProducts;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+    
 }

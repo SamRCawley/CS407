@@ -6,6 +6,7 @@ package ccsu.proj.Controllers;
 
 
 import ccsu.proj.Model.Orders;
+import ccsu.proj.Model.OrdersProducts;
 import ccsu.proj.Model.Products;
 import java.io.Serializable;
 import java.util.Date;
@@ -38,11 +39,30 @@ public class ShoppingCart implements Serializable{
     }
     
     public void addItemToCart(Products product) {
-        cart.add(product);
+        boolean added = false;
+        for(Products p: cart)
+        {
+            if(p.getID() == product.getID())
+            {
+                p.setQuantity(p.getQuantity()+1);
+                added = true;
+            }
+        }
+        if(!added)
+            cart.add(product);
     }
     
     public void removeItemFromCart(Products product) {
-        cart.remove(product);
+        for(Products p: cart)
+        {
+            if(p.getID() == product.getID() && p.getQuantity() > 1)
+            {
+                if(p.getQuantity() > 1)
+                    p.setQuantity(p.getQuantity()-1);
+                else
+                    cart.remove(product);
+            }
+        }
     }
     
     public void clearShoppingCart() {
@@ -51,15 +71,28 @@ public class ShoppingCart implements Serializable{
     
     public String finalizeOrder(){
         Orders order= new Orders();
+        Set<OrdersProducts> ordersProducts = new HashSet();
         java.util.Date utilDate = new Date();
         java.sql.Date date = new java.sql.Date(utilDate.getTime());
         order.setDate(date);
-        order.setProducts(cart);
+        for(Products p: cart)
+        {
+            OrdersProducts o = new OrdersProducts();
+            o.setOrdernum(order);
+            o.setProduct(p);
+            o.setQuantity(p.getQuantity());
+            ordersProducts.add(o);
+        }
+        order.setId(1);  //TODO: Add connection to Accounts when login is finished
         String saved = "error";
         try {
             userTransaction.begin();
             EntityManager em = entityManagerFactory.createEntityManager();
             em.persist(order);
+            for(OrdersProducts o: ordersProducts)
+            {
+                em.persist(o);
+            }
             userTransaction.commit();
             em.close();
             saved = "confirmation";
