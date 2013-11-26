@@ -2,7 +2,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <h:form>
         <div class='productgrid'>
@@ -50,17 +51,21 @@
                         <f:param name="v" value="cart" />
                     </h:commandButton>
                 </h:column>
-          
             </h:dataTable>
-            <div style="float:right">
+            
+            <!-- If the cart is empty, display message -->
+            <c:if test="${shoppingCart.shoppingCartItems.size() == 0}">
+                <div id="cartMessage">
+                    Your cart is empty!
+                </div>
+            </c:if>
+            
+            <div id="cartTotal">
                 <h:outputText value="Total: "/>
                 <h:outputText value="#{shoppingCart.getTotal()}"> 
                     <f:convertNumber type="currency"/> 
                 </h:outputText>
             </div>
-      </div>
+        </div>
     </h:form>
-    <div style="height: 250px;">
-        TODO: Cart items will be shown here. Refer to cart.xhtml
-    </div>
 </ui:composition>
