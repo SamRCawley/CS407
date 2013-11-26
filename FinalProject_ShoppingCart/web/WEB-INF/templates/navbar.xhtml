@@ -2,17 +2,17 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <!-- Navigation Items, mainly product categories -->
     <div id="navbox">
         <h:outputText styleClass="navHeader" value="Product Categories: " />
         <ul>
-            <!-- Link to all products (products.xhtml -->
             <li><h:link value='All Products' outcome="index" /></li>
-            <!-- TODO: Loop over product categories in database
-                Create a link for each one that uses our search controller
-            -->
+            <c:forEach var="category" items="${productSearch.productCategories}">
+                <li><h:link value="${category.categoryName}" outcome="index" /></li>
+            </c:forEach>
         </ul>
     </div>
     
@@ -23,8 +23,12 @@
         <ul>
             <!-- Link to user's cart -->
             <li><h:link value="Shopping Cart" outcome="index">
-                <f:param name="view" value="cart" />
+                <f:param name="v" value="cart" />
             </h:link></li>
+            <!-- Not working -->
+            <c:if test="${account.permission_Level == 1}">
+                <li><h:link value="Admin Panel" outcome="admin" /></li>
+            </c:if>
         </ul>
     </div>
     

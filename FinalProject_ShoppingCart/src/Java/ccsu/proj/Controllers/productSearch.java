@@ -5,13 +5,13 @@
 package ccsu.proj.Controllers;
 
 
+import ccsu.proj.Model.Categories;
 import ccsu.proj.Model.Products;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -44,6 +44,19 @@ public class productSearch {
             e.printStackTrace();
         }
         return products;
+    }
+    
+    public List getProductCategories() {
+        List<Categories> categories = new ArrayList();
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        String selectSQL = "select c from Categories c"; 
+        try {
+            Query selectQuery = entityManager.createQuery(selectSQL);
+            categories = selectQuery.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
     
     public Products getProduct() {

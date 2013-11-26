@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -28,7 +29,7 @@
                         If ?view=cart then we should include the cart.xhtml
                         Else include products.xhtml
                     -->
-                    <ui:include src="/WEB-INF/templates/#{param['view'] == 'cart' ? 'cart' : 'products'}.xhtml" />
+                    <ui:include src="/WEB-INF/templates/#{param['v'] == 'cart' ? 'cart' : 'products'}.xhtml" />
                 </ui:insert>
             </div>
         </div>

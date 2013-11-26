@@ -72,8 +72,8 @@ public class Login {
             if(accounts.size() == 1) {
                 account = accounts.get(0);
                 return "authenticated";
-            } else { return "invalidPass"; }
-        } else { return "noSuchUsername"; }
+            } else return "invalidPass";
+        } else return "noSuchUsername";
     }
     
     public void setAccount(Account account) {

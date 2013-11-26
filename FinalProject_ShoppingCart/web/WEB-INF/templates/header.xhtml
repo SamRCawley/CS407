@@ -2,21 +2,29 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <!-- Add header image etc here -->
-    <h:outputText value="Header" />
+    <h:outputText styleClass="header" value="CS 407 Store" />
     
     <div id="loginbox">
-        <!-- Handle login handshake, reload page with account in session -->
-        <h:form>
-            <h:outputLabel for="username" value="Username: " />
-            <h:inputText id="username" style="margin-right: 5px; width: 100px" value="${account.username}" />
-            <h:outputLabel for="password" value="Password: " />
-            <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" value="${account.PW_Hash}" />
-            <h:commandButton action="#{login.validateAccount}" value="Login">
-            </h:commandButton>
-        </h:form>
+    <c:choose>
+        <c:when test="${login.account.id == 0}">
+            <h:form>
+                <h:outputLabel for="username" value="Username: " />
+                <h:inputText id="username" style="margin-right: 5px; width: 100px" value="${account.username}" />
+                <h:outputLabel for="password" value="Password: " />
+                <h:inputSecret id="password" style="margin-right: 5px; width: 100px;" value="${account.PW_Hash}" />
+                <h:commandButton action="#{login.validateAccount}" value="Login">
+                </h:commandButton>
+            </h:form>
+        </c:when>
+        <c:otherwise>
+            <h:outputText value="Welcome ${account.username}!   " />
+            <h:link value="Logout" /><!-- Should log user out -->
+        </c:otherwise>
+    </c:choose>
     </div>
     
 </ui:composition>
