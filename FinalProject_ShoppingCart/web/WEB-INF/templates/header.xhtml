@@ -22,7 +22,7 @@
         <c:otherwise>
             <h:form>
                 <h:outputText value="Welcome ${login.account.username}!     " />
-                <h:commandLink action="#{login.logout}" value="Logout" /><!-- Should log user out -->
+                <h:commandLink action="/Logout" value="Logout" /><!-- Should log user out -->
             </h:form>
         </c:otherwise>
     </c:choose>
