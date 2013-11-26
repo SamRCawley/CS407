@@ -44,7 +44,7 @@ public class Products implements Serializable {
             inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="CID"))
     private Set<Categories> categories = new HashSet();
     
-    @ManyToMany(mappedBy="orders")
+    @ManyToMany(mappedBy="products")
     private Set<Orders> orders = new HashSet();
     
     

@@ -6,6 +6,7 @@ package ccsu.proj.Controllers;
 
 import ccsu.proj.Classes.SHA1MessageDigest;
 import ccsu.proj.Model.Account;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
@@ -27,7 +28,7 @@ import javax.transaction.UserTransaction;
 
 @ManagedBean
 @SessionScoped
-public class Login {
+public class Login implements Serializable{
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource

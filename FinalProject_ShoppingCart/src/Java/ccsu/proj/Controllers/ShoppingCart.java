@@ -7,11 +7,13 @@ package ccsu.proj.Controllers;
 
 import ccsu.proj.Model.Orders;
 import ccsu.proj.Model.Products;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -23,7 +25,8 @@ import javax.transaction.UserTransaction;
  */
 
 @ManagedBean
-public class ShoppingCart {
+@SessionScoped
+public class ShoppingCart implements Serializable{
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
@@ -59,7 +62,7 @@ public class ShoppingCart {
             em.persist(order);
             userTransaction.commit();
             em.close();
-            saved = "saved";
+            saved = "confirmation";
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,18 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html
+<ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:head>
-        <title><ui:insert>Shopping Cart</ui:insert></title>
-    </h:head>
-    <!--<h:form>
+    
+    <h:form>
         <div class='productgrid'>
             <h:dataTable styleClass="datatable" id="datatable" value="#{shoppingCart.shoppingCartItems}" var="product">
                 <h:column>
@@ -53,13 +45,14 @@ and open the template in the editor.
                     <f:facet name="header">
                         <h:outputText value="Cart Action" />
                     </f:facet>
+                    
                     <h:commandButton value="Remove from Cart" action="#{shoppingCart.removeItemFromCart(product)}" />
                 </h:column>
                 
             </h:dataTable>
         </div>
-    </h:form>-->
+    </h:form>
     <div style="height: 250px;">
         TODO: Cart items will be shown here. Refer to cart.xhtml
     </div>
-</html>
+</ui:composition>
