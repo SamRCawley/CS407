@@ -21,14 +21,14 @@
     <div id="cart">
         <h:outputText styleClass="navHeader" value="Store Actions: " />
         <ul>
+            <!-- Link to admin panel. Only shows for and admin --> 
+            <c:if test="${login.account.permission_Level == 1}">
+                <li><h:link value="Admin Panel" outcome="admin" /></li>
+            </c:if>
             <!-- Link to user's cart -->
             <li><h:link value="Shopping Cart" outcome="index">
                 <f:param name="v" value="cart" />
             </h:link></li>
-            <!-- Not working -->
-            <c:if test="${account.permission_Level == 1}">
-                <li><h:link value="Admin Panel" outcome="admin" /></li>
-            </c:if>
         </ul>
     </div>
     
