@@ -11,7 +11,8 @@
         <ul>
             <li><h:link value='All Products' outcome="index" /></li>
             <c:forEach var="category" items="${productSearch.productCategories}">
-                <li><h:link value="${category.categoryName}" outcome="index" /></li>
+                <li><h:link value="${category.categoryName}" outcome="index">
+                        <f:param name="cat" value="${category.categoryName}"/></h:link></li>
             </c:forEach>
         </ul>
     </div>

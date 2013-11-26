@@ -9,9 +9,11 @@ import ccsu.proj.Model.Categories;
 import ccsu.proj.Model.Products;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -32,13 +34,21 @@ public class productSearch {
     @ManagedProperty(value = "#{products}")
     private Products product;
     
+    FacesContext fc = FacesContext.getCurrentInstance();
+    
     public List getMatchingProducts() {
         List<Products> products = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        String selectSQL = "select p from Products p where p.productName like :name"; 
+        Map<String,String> params = 
+        fc.getExternalContext().getRequestParameterMap();
+        String category = params.get("cat");
+        if(category == null)
+            category = "";
+        String selectSQL = "select p from Products p where p.productName like :name AND EXISTS(SELECT c.categoryName  FROM p.categories c WHERE c.categoryName like :category)"; 
         try {
             Query selectQuery = entityManager.createQuery(selectSQL);
             selectQuery.setParameter("name", product.getProductName()+ "%");
+            selectQuery.setParameter("category", category +"%");
             products = selectQuery.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,7 +5,9 @@
 package ccsu.proj.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -44,7 +47,8 @@ public class Products implements Serializable {
     @ManyToMany
     @JoinTable(name="PRODUCTS_CATEGORIES", joinColumns=@JoinColumn(name="PID", referencedColumnName="ID"), 
             inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="CID"))
-    private Set<Categories> categories = new HashSet();
+    @OrderBy("categoryName")
+    private List<Categories> categories = new ArrayList();
     
     @OneToMany(mappedBy="product")
     private Set<OrdersProducts> ordersProducts = new HashSet();
@@ -86,11 +90,11 @@ public class Products implements Serializable {
         this.description = description;
     }
     
-    public Set<Categories> getCategories() {
+    public List<Categories> getCategories() {
         return categories;
     }
     
-    public void setCategories(Set<Categories> categories) {
+    public void setCategories(List<Categories> categories) {
         this.categories = categories;
     }
     
