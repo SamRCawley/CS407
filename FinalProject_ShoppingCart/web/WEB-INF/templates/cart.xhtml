@@ -69,16 +69,18 @@
                 </c:choose>
             </h:dataTable>
             
-            <div id="cartTotal">
-                <h:outputText value="Total: "/>
-                <h:outputText value="#{shoppingCart.getTotal()}"> 
-                    <f:convertNumber type="currency"/> 
-                </h:outputText>
-                <br/>
-                <h:commandButton value="Submit Order" action="#{shoppingCart.finalizeOrder}">
+            <c:if test="${shoppingCart.shoppingCartItems.size() gt 0}">
+                <div id="cartTotal">
+                    <h:outputText value="Total: "/>
+                    <h:outputText value="#{shoppingCart.getTotal()}"> 
+                        <f:convertNumber type="currency"/> 
+                    </h:outputText>
+                    <br/><br/>
+                    <h:commandButton value="Submit Order" action="#{shoppingCart.finalizeOrder}">
                         <f:param name="v" value="cart" />
-                </h:commandButton>
-            </div>
+                    </h:commandButton>
+                </div>
+            </c:if>
         </div>
     </h:form>
 </ui:composition>
