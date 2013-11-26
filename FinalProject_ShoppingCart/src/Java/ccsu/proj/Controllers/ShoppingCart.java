@@ -107,7 +107,7 @@ public class ShoppingCart implements Serializable{
         float total = 0;
         for(Products p : cart)
         {
-            total += p.getPrice();
+            total += p.getPrice()*p.getQuantity();
         }
         return total;
     }
