@@ -5,6 +5,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
+    <div id='wrapper'>
     <h:form>
         <div class='productGrid'>
             <h:dataTable styleClass="datatable" id="datatable" value="#{shoppingCart.shoppingCartItems}" var="product">
@@ -83,4 +84,5 @@
             </c:if>
         </div>
     </h:form>
+    </div> <!-- End Wrapper -->
 </ui:composition>
