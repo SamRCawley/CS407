@@ -17,6 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,6 +34,9 @@ import javax.persistence.TemporalType;
 @ManagedBean
 @Table(name = "ORDERS")
 @SessionScoped
+@NamedQueries({
+    @NamedQuery(name = "Orders.sortDateAsc", query = "SELECT o FROM Orders o ORDER BY o.date ASC"),
+    @NamedQuery(name = "Orders.sortDateDesc", query = "SELECT o FROM Orders o ORDER BY o.date DESC")})
 public class Orders implements Serializable {
     @Id
     @Column(name = "ORDERNUM")
@@ -44,10 +50,18 @@ public class Orders implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date date;
     
+    @ManyToOne
+    @JoinColumn(name = "ID")
+    private Account account;
+    
     @OneToMany(mappedBy="orderNum")
     private Set<OrdersProducts> ordersProducts = new HashSet();
 
-    public Orders() {
+    public Account getAccount() {
+        return account;
+    }
+    public void setAccount(Account account){
+        this.account = account;
     }
 
     public Orders(Integer ordernum) {
