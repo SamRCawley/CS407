@@ -9,16 +9,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Orders View</title>
     </h:head>
-    
-    <h:form>
-        
-        <div id="searchbar">
-            <h:outputText value="Product Search: "/>
-            <h:inputText id="productname" value="#{products.productName}">
-                <f:ajax event="keyup" render="datatable"/>
-            </h:inputText>
-        </div>
-        
+    <h:body>
+    <h:form>        
         <div class="productGrid">
             <h:dataTable styleClass="datatable" id="datatable" value="#{productSearch.matchingProducts}" var="product">
                 <c:choose>
@@ -75,5 +67,6 @@
         </div>
         
     </h:form>
+    </h:body>
     
 </html>
