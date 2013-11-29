@@ -63,7 +63,9 @@ public class Orders implements Serializable {
     public void setAccount(Account account){
         this.account = account;
     }
-
+    public Orders(){
+        
+    }
     public Orders(Integer ordernum) {
         this.ordernum = ordernum;
     }
