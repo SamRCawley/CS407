@@ -8,7 +8,7 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case> <!-- Admin -->
             <from-outcome>admin</from-outcome>
-            <to-view-id>/adminArea.xhtml</to-view-id>
+            <to-view-id>/admin/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

@@ -8,6 +8,7 @@ import ccsu.proj.Model.Account;
 import java.io.Serializable;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -31,7 +32,7 @@ public class Register implements Serializable {
     
     }
     
-    public void register() {
+    public void registerNewUser() {
         
     }
     

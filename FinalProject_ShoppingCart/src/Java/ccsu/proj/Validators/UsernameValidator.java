@@ -22,5 +22,4 @@ public class UsernameValidator implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         /* Validate username. Makes sure name isn't already taken. Might be able to just use Login bean */
     }
-    
 }

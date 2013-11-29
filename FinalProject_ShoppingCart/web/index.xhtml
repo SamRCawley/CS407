@@ -25,6 +25,7 @@
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">
+                    <!-- Ternary to Switch to support multiple 'v' values -->
                     <c:choose>
                         <c:when test="#{param['v'] == 'cart'}">
                             <ui:include src="/WEB-INF/templates/cart.xhtml" />
