@@ -17,14 +17,14 @@ import javax.faces.validator.ValidatorException;
  * @author cw1491
  */
 @FacesValidator(value="emailValidator")
-public class EmailValidator implements Validator{
+public class EmailValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String emailAddress = (String)value;
         HtmlInputText htmlInputText = (HtmlInputText)component;
-        if (!emailAddress.matches("[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+")){
-            FacesMessage facesMessage =  new FacesMessage(htmlInputText.getLabel()+": email format is not valid");
+        if (!emailAddress.matches("[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+")) {
+            FacesMessage facesMessage =  new FacesMessage("Please enter a valid email address");
             throw new ValidatorException(facesMessage);
         }
     }
