@@ -17,26 +17,39 @@
     
     <div id ='wrapper'>
     <h:form>
-        <h1>Register a new account and make checkout easier</h1>
+        <h1>Register a new account and make checking out easier!</h1>
         <h:panelGrid columns="3">
             <h:outputLabel for="r_username" value="Username" />
-            <h:inputText id="r_username" value="" required="true" validator="#{usernameValidator.validate}" />
+            <h:inputText id="r_username" value="" required="true"
+                         requiredMessage="Please enter a username">
+                <f:validator validatorId="usernameValidator" />
+            </h:inputText>
             <h:message styleClass="message" for="r_username" />
             
             <h:outputLabel for="r_email" value="Email Address" />
-            <h:inputText id="r_email" value="" required="true" validator="#{emailValidator.validate}" />
+            <h:inputText id="r_email" value="" required="true"
+                         requiredMessage="Please enter an email address">
+                <f:validator validatorId="emailValidator" />
+            </h:inputText>
             <h:message styleClass="message" for="r_email" />
 
             <h:outputLabel for="r_password" value="Password" />
-            <h:inputSecret id="r_password" value="" required="true" />
+            <h:inputSecret id="r_password" value="" required="true" 
+                           requiredMessage="Please enter a password"/>
             <h:message styleClass="message" for="r_password" />
 
             <h:outputLabel for="r_confirm" value="Confirm password" />
-            <h:inputSecret id="r_confirm" value="" required="true" validator="#{passwordValidator.validate}"/>
+            <h:inputSecret id="r_confirm" value="" required="true" 
+                           requiredMessage="Please confirm your password">
+                <f:validator validatorId="passwordValidator" />
+            </h:inputSecret>
             <h:message styleClass="message" for="r_confirm" />
             
-            <h:panelGroup></h:panelGroup>
-            <h:commandButton id="register" style="float:right;" value="Register" action="#{register.register}" />
+            <h:panelGroup />
+            <h:commandButton id="register" style="float:right;"
+                             value="Register" action="#{register.register}">
+                <f:param name="v" value="register" />
+            </h:commandButton>
             <h:message styleClass="message" for="register" />
         </h:panelGrid>
     </h:form>
