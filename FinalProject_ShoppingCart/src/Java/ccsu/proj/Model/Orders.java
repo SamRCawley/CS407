@@ -51,7 +51,7 @@ public class Orders implements Serializable {
     private Date date;
     
     @ManyToOne
-    @JoinColumn(name = "ID")
+    @JoinColumn(name = "ID", insertable = false, updatable = false)
     private Account account;
     
     @OneToMany(mappedBy="orderNum")
