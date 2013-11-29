@@ -74,3 +74,12 @@ WHERE c.categoryname = 'Electronics';</i>
 <li>JAAS authentication framework for admin panel access</li>
 <li>Message Digest to store account passwords using JCE</li>
 </ul>
+
+<hr />
+
+<b>Default testing accounts</b>
+
+<ul>
+<li>Administrator - Username: admin | Password: password</li>
+<li>Standard - Username: user | Password: password</li>
+</ul>
