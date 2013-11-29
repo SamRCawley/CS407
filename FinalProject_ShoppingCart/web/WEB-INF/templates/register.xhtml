@@ -1,0 +1,45 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head><title>Register</title></h:head>
+    
+    <!-- 
+        This is a basic registration form. Nothing too fancy.
+    
+        Thought here is that a user level account can be created here,
+        but an admin level account must be made in the admin panel.
+    
+        This also gives us a chance to use validators for email address.
+    -->
+    
+    <div id ='wrapper'>
+    <h:form>
+        <h1>Register a new account and make checkout easier</h1>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="r_username" value="Username" />
+            <h:inputText id="r_username" value="" required="true" validator="#{usernameValidator.validate}" />
+            <h:message styleClass="message" for="r_username" />
+            
+            <h:outputLabel for="r_email" value="Email Address" />
+            <h:inputText id="r_email" value="" required="true" validator="#{emailValidator.validate}" />
+            <h:message styleClass="message" for="r_email" />
+
+            <h:outputLabel for="r_password" value="Password" />
+            <h:inputSecret id="r_password" value="" required="true" />
+            <h:message styleClass="message" for="r_password" />
+
+            <h:outputLabel for="r_confirm" value="Confirm password" />
+            <h:inputSecret id="r_confirm" value="" required="true" validator="#{passwordValidator.validate}"/>
+            <h:message styleClass="message" for="r_confirm" />
+            
+            <h:panelGroup></h:panelGroup>
+            <h:commandButton id="register" style="float:right;" value="Register" action="#{register.register}" />
+            <h:message styleClass="message" for="register" />
+        </h:panelGrid>
+    </h:form>
+    </div> <!-- End Wrapper -->
+    
+</ui:composition>

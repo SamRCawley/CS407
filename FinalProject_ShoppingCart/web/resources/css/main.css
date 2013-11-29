@@ -26,6 +26,10 @@
 
 .productGrid {
     text-align: center;
+    height: 100%;
+}
+
+#wrapper {
     min-height: 200px;
 }
 
@@ -76,5 +80,9 @@ tr:last-child {
 .password {
     margin-right: 5px;
     width: 100px;
+}
+
+.message {
+    color: red;
 }
 

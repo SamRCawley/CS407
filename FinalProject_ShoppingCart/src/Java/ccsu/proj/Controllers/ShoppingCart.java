@@ -27,7 +27,7 @@ import javax.transaction.UserTransaction;
 
 @ManagedBean
 @SessionScoped
-public class ShoppingCart implements Serializable{
+public class ShoppingCart implements Serializable {
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
@@ -40,11 +40,9 @@ public class ShoppingCart implements Serializable{
     
     public void addItemToCart(Products product) {
         boolean added = false;
-        for(Products p: cart)
-        {
-            if(p.getID() == product.getID())
-            {
-                p.setQuantity(p.getQuantity()+1);
+        for(Products p: cart) {
+            if(p.getID() == product.getID()) {
+                p.setQuantity(p.getQuantity() + 1);
                 added = true;
             }
         }
@@ -53,12 +51,10 @@ public class ShoppingCart implements Serializable{
     }
     
     public void removeItemFromCart(Products product) {
-        for(Products p: cart)
-        {
-            if(p.getID() == product.getID())
-            {
+        for(Products p: cart) {
+            if(p.getID() == product.getID()) {
                 if(p.getQuantity() > 1)
-                    p.setQuantity(p.getQuantity()-1);
+                    p.setQuantity(p.getQuantity() - 1);
                 else
                     cart.remove(product);
             }
@@ -69,14 +65,13 @@ public class ShoppingCart implements Serializable{
         cart.clear();
     }
     
-    public String finalizeOrder(){
+    public String finalizeOrder() {
         Orders order= new Orders();
         Set<OrdersProducts> ordersProducts = new HashSet();
         java.util.Date utilDate = new Date();
         java.sql.Date date = new java.sql.Date(utilDate.getTime());
         order.setDate(date);
-        for(Products p: cart)
-        {
+        for(Products p: cart) {
             OrdersProducts o = new OrdersProducts();
             o.setOrdernum(order);
             o.setProduct(p);
@@ -89,8 +84,7 @@ public class ShoppingCart implements Serializable{
             userTransaction.begin();
             EntityManager em = entityManagerFactory.createEntityManager();
             em.persist(order);
-            for(OrdersProducts o: ordersProducts)
-            {
+            for(OrdersProducts o: ordersProducts) {
                 em.persist(o);
             }
             userTransaction.commit();
@@ -102,12 +96,10 @@ public class ShoppingCart implements Serializable{
         return saved;
     }
     
-    public float getTotal()
-    {
+    public float getTotal() {
         float total = 0;
-        for(Products p : cart)
-        {
-            total += p.getPrice()*p.getQuantity();
+        for(Products p : cart) {
+            total += p.getPrice() * p.getQuantity();
         }
         return total;
     }

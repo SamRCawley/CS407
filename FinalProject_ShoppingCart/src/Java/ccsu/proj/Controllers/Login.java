@@ -34,8 +34,7 @@ public class Login implements Serializable{
     @ManagedProperty(value = "#{account}")
     private Account account;
     
-    public boolean usernameExists()
-    {
+    public boolean usernameExists() {
         List<Account> accounts = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         String selectSQL = "select a from Account a where a.username = :username"; 
