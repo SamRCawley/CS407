@@ -7,6 +7,7 @@ package ccsu.proj.Model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -55,7 +56,7 @@ public class Orders implements Serializable {
     private Account account;
     
     @OneToMany(mappedBy="orderNum")
-    private Set<OrdersProducts> ordersProducts = new HashSet();
+    private List<OrdersProducts> ordersProducts;
 
     public Account getAccount() {
         return account;
@@ -99,11 +100,11 @@ public class Orders implements Serializable {
         this.date = date;
     }
     
-    public Set<OrdersProducts> getOrdersProducts() {
+    public List<OrdersProducts> getOrdersProducts() {
         return ordersProducts;
     }
     
-    public void setProducts(Set<OrdersProducts> ordersProducts) {
+    public void setProducts(List<OrdersProducts> ordersProducts) {
         this.ordersProducts = ordersProducts;
     }
     
