@@ -40,9 +40,9 @@
                         <h:outputText value="Products"/>
                     </f:facet> 
                     <h:panelGroup>
-                        <h:dataTable styleClass="categorytable" id="categorytable" value="#{order.ordersProducts}" var="product" border="0" cellpadding="0" cellspacing="0">
+                        <h:dataTable styleClass="categorytable" id="categorytable" value="#{order.ordersProducts}" var="products" border="0" cellpadding="0" cellspacing="0">
                             <h:column>
-                                <h:outputText value="#{products.productName}"></h:outputText>
+                                <h:outputText value="#{products.product.productName}"></h:outputText>
                             </h:column>
                         </h:dataTable>
                     </h:panelGroup>
