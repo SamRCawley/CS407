@@ -34,7 +34,9 @@
                         <c:when test="#{param['v'] == 'register'}">
                             <ui:include src="/WEB-INF/templates/register.xhtml" />
                         </c:when>
-                        
+                        <c:when test="#{param['v'] == 'confirmation'}">
+                            <ui:include src="/WEB-INF/templates/confirmation.xhtml" />
+                        </c:when>
                         <c:otherwise>
                             <ui:include src="/WEB-INF/templates/products.xhtml" />
                         </c:otherwise>

@@ -89,7 +89,7 @@ public class ShoppingCart implements Serializable {
             }
             userTransaction.commit();
             em.close();
-            saved = "confirmation";
+            saved = "index?faces-redirect=true&v=confirmation";
         } catch (Exception e) {
             e.printStackTrace();
         }

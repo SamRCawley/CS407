@@ -1,0 +1,65 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <div id='wrapper'>
+    <h:form>
+        <div class='productGrid'>
+            <h:dataTable styleClass="datatable" id="datatable" value="#{shoppingCart.shoppingCartItems}" var="product">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Product Name" />
+                    </f:facet> 
+                    <h:outputText value="#{product.productName}" ></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.description}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Categories"/>
+                    </f:facet> 
+                    <h:panelGroup>
+                        <h:dataTable styleClass="categorytable" id="categorytable" value="#{product.categories}" var="category" border="0" cellpadding="0" cellspacing="0">
+                            <h:column>
+                                <h:outputText value="#{category.categoryName}"></h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Price"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.price}" ><f:convertNumber type="currency"/></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quantity"/>
+                    </f:facet> 
+                    <h:outputText value="#{product.quantity}" ></h:outputText>
+                </h:column>
+            </h:dataTable>
+            <div id="cartTotal">
+                <h:outputText value="Total: "/>
+                <h:outputText value="#{shoppingCart.getTotal()}"> 
+                    <f:convertNumber type="currency"/> 
+                </h:outputText>
+            </div>
+        </div>
+    </h:form>
+        <div id="thanks">
+        <h:outputText value="Thank you for your order!" />
+        </div>
+    </div> <!-- End Wrapper -->
+</ui:composition>
+

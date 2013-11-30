@@ -86,3 +86,10 @@ tr:last-child {
     color: red;
 }
 
+#thanks {
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+    width: 100%;
+}
+
