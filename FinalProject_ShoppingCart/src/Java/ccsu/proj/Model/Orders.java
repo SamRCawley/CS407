@@ -55,7 +55,7 @@ public class Orders implements Serializable {
     private Account account;
     
     @OneToMany(mappedBy="orderNum")
-    private Set<OrdersProducts> ordersProducts = new HashSet();
+    private Set<OrdersProducts> ordersProducts;
 
     public Account getAccount() {
         return account;
