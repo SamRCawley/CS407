@@ -37,7 +37,9 @@ import javax.persistence.TemporalType;
 @SessionScoped
 @NamedQueries({
     @NamedQuery(name = "Orders.sortDateAsc", query = "SELECT o FROM Orders o ORDER BY o.date ASC"),
-    @NamedQuery(name = "Orders.sortDateDesc", query = "SELECT o FROM Orders o ORDER BY o.date DESC")})
+    @NamedQuery(name = "Orders.sortDateDesc", query = "SELECT o FROM Orders o ORDER BY o.date DESC"),
+    @NamedQuery(name = "Orders.byOrder", query = "SELECT o FROM Orders o WHERE o.ordernum = :number ORDER BY o.date DESC"),
+    @NamedQuery(name = "Orders.byUsername", query = "SELECT o FROM Orders o, Account a WHERE a.username LIKE :username AND a.id = o.id ORDER BY o.date DESC")})
 public class Orders implements Serializable {
     @Id
     @Column(name = "ORDERNUM")
