@@ -65,9 +65,9 @@ public class Login implements Serializable {
             }
             if(accounts.size() == 1) {
                 account = accounts.get(0);
-                return "authenticated";
+                return "index";
             } else return "invalidPass";
-        } else return "noSuchUsername";
+        } else return "index?faces-redirect=true&v=register";
     }
     
     public void logout() {
