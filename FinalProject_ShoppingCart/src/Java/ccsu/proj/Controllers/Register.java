@@ -52,10 +52,10 @@ public class Register implements Serializable {
     private void incrementAccountID() {
         int newID = 0;
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        String selectSQL = "select max(id) from Account"; 
+        String selectSQL = "select max(a.id) from Account a"; 
         
         try {
-            newID = (Integer)entityManager.createQuery("select max(a.id) from Account a").getSingleResult() + 1;
+            newID = (Integer)entityManager.createQuery(selectSQL).getSingleResult() + 1;
         } catch (Exception e) {
             e.printStackTrace();
         }
