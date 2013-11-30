@@ -14,14 +14,22 @@
     </h:head>
     <h:body>
          <div class="productGrid">
-             <h:dataTable styleClass="datatable" id="datatable" value="#{adminOrders.byDateAsc}" var="order">
+             <h:form>                  
+                    <h:outputText value="Search By Order Number:" />
+                    <h:inputText id="adminSearchByOrder" value="#{adminOrders.searchNumber}" >
+                        <f:ajax event="keyup" render="datatable" />
+                    </h:inputText><br/>
+                    <h:outputText value="Search By Username:" />
+                    <h:inputText id="adminSearchByUsername" value="#{adminOrders.searchUsername}" >
+                        <f:ajax event="keyup" render="datatable" />
+                    </h:inputText>
+                 <h:dataTable styleClass="datatable" id="datatable" value="#{adminOrders.collection}" var="order">
                  <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Order Number" />
+                        <h:outputText value="Order Number"/>
                     </f:facet> 
                      <h:outputText value="#{order.ordernum}" ></h:outputText>
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="User"/>
@@ -40,7 +48,7 @@
                         <h:outputText value="Products"/>
                     </f:facet> 
                     <h:panelGroup>
-                        <h:dataTable styleClass="categorytable" id="categorytable" value="#{order.ordersProducts}" var="products" border="0" cellpadding="0" cellspacing="0">
+                        <h:dataTable styleClass="producttable" id="producttable" value="#{order.ordersProducts}" var="products" border="0" cellpadding="0" cellspacing="0">
                             <h:column>
                                 <h:outputText value="#{products.product.productName}"></h:outputText>
                             </h:column>
@@ -48,6 +56,7 @@
                     </h:panelGroup>
                 </h:column>
             </h:dataTable> 
+            </h:form>
         </div>
     </h:body>
 </html>
