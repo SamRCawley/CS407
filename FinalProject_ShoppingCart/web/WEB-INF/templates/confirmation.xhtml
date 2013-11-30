@@ -60,6 +60,9 @@
         <div id="thanks">
         <h:outputText value="Thank you for your order!" />
         </div>
-    </div> <!-- End Wrapper -->
+    </div><!-- End Wrapper -->
+    <h:form id="hidden" style="display:none">
+        <h:commandLink id="link"  rendered="#{shoppingCart.clearShoppingCart()}" />
+    </h:form>
 </ui:composition>
 
