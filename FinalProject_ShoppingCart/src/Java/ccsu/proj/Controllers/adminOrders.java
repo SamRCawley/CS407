@@ -31,8 +31,7 @@ public class adminOrders {
     public Collection<Orders> getByDateAsc() {
         Collection<Orders> collection;
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createQuery("SELECT c FROM Orders c");
-        //Query query = entityManager.createNamedQuery("Orders.sortDateAsc");
+        Query query = entityManager.createNamedQuery("Orders.sortDateAsc");
         collection = query.getResultList();
         System.out.println("excuted get date");
         return collection;        
@@ -40,17 +39,16 @@ public class adminOrders {
     public Collection<Orders> getByDateDesc() {
         Collection<Orders> collection;
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        //Query query = entityManager.createNamedQuery("Orders.sortDateDesc");
-        Query query = entityManager.createQuery("SELECT c FROM Orders c");
+        Query query = entityManager.createNamedQuery("Orders.sortDateDesc");
         collection = query.getResultList();
         return collection;
     }
-    public Orders getProduct() {
+    public Orders getOrder() {
         return order;
     }
 
    
-    public void setProduct(Orders order) {
+    public void setOrder(Orders order) {
         this.order = order;
     }
 }
