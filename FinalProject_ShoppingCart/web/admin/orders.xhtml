@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <div class="productGrid">
+             <h:dataTable styleClass="datatable" id="datatable" value="#{adminOrders.byDateAsc}" var="order">
+                 <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Product Name" />
+                    </f:facet> 
+                 <h:outputText value="#{order.id}" ></h:outputText>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet> 
+                    <h:outputText value="#{order.account.username}"></h:outputText>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Categories"/>
+                    </f:facet> 
+                    <h:panelGroup>
+                        <h:dataTable styleClass="categorytable" id="categorytable" value="#{order.ordersProducts}" var="product" border="0" cellpadding="0" cellspacing="0">
+                            <h:column>
+                                <h:outputText value="#{products.ID}"></h:outputText>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:column>
+            </h:dataTable> 
+        </div>
+    </h:body>
+</html>
+
