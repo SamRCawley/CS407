@@ -26,11 +26,9 @@ import javax.transaction.UserTransaction;
 
 @ManagedBean
 @SessionScoped
-public class Login implements Serializable{
+public class Login implements Serializable {
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
-    @Resource
-    private UserTransaction userTransaction;  //use this later for creating new accounts
     @ManagedProperty(value = "#{account}")
     private Account account;
     
