@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 @Entity
 @ManagedBean
 @Table(name = "ORDERS_PRODUCTS")
+@IdClass(OrdersProductsID.class)
 public class OrdersProducts implements Serializable {
     
     @Id
