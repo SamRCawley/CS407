@@ -55,9 +55,11 @@
                         </f:facet>
                         <h:commandButton value="Edit" action="#{adminAccounts.editAccount()}">
                             <f:param name="v" value="manage_accounts" />
+                            <f:param name="id" value="#{s_account.ID}" />
                         </h:commandButton>
                         <h:commandButton value="Delete" action="#{adminAccounts.removeAccount()}">
                             <f:param name="v" value="manage_accounts" />
+                            <f:param name="id" value="#{s_account.ID}" />
                         </h:commandButton>
                     </h:column>
                 </h:dataTable>

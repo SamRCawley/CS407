@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -34,6 +35,7 @@ public class adminAccounts implements Serializable {
     private UserTransaction userTransaction;
     @ManagedProperty(value = "#{s_account}")
     private Account account;
+    FacesContext fc = FacesContext.getCurrentInstance();
 
     public adminAccounts() {
     }
@@ -80,22 +82,25 @@ public class adminAccounts implements Serializable {
 
         account.setID(newID);
     }
-    
+
     public String editAccount() {
         String returnValue = "error";
-        
+
         return returnValue;
     }
-    
+
     public String removeAccount() {
         String returnValue = "error";
         try {
             userTransaction.begin();
             EntityManager em = entityManagerFactory.createEntityManager();
+            Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+            int id = Integer.parseInt(params.get("id"));
+            account = em.find(Account.class, id);
             em.remove(account);
             userTransaction.commit();
             em.close();
-            returnValue = "index?faces-redirect=true&v=manage_accounts";
+            returnValue = "success";
         } catch (Exception e) {
             e.printStackTrace();
         }
