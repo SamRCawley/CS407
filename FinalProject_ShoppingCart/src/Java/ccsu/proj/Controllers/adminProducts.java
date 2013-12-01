@@ -106,14 +106,14 @@ public class adminProducts {
         EntityManager entityManager1 = entityManagerFactory.createEntityManager();
         Query query = entityManager1.createNamedQuery("Products.byID");        
         query.setParameter("number", selectedProduct);
-        Collection<Products> pResults = query.getResultList();
+        List<Products> pResults = query.getResultList();
         if(!pResults.isEmpty()){
             Products productRetrieved = pResults.iterator().next();
             List<Categories> currentCategories = productRetrieved.getCategories();
             EntityManager entityManager2 = entityManagerFactory.createEntityManager();
             query = entityManager2.createNamedQuery("Categories.byID");        
             query.setParameter("number", selectedCategory);
-            Collection<Categories> cResults = query.getResultList();
+            List<Categories> cResults = query.getResultList();
             entityManager2.close();
             if(!cResults.isEmpty()){
                 Categories category = cResults.iterator().next();
