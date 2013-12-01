@@ -1,205 +1,207 @@
-<ui:composition 
+<ui:composition
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
+
     <div id='wrapper'>
-        <h:form>
-            
-        <div id="productGrid" style="float:left;">
-            <table>
-                <tr>
-                    <td><h1><h:outputText value="Search Products" /></h1></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Search By Product ID:" /></td>
-                    <td>
+
+        <div id='adminProductBox'>
+            <h:form>
+                <h:panelGrid columns="2">
+
+                    <h:column><h1><h:outputText value="Search Products" /></h1></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:outputText value="Search By Product ID:" /></h:column>
+                    <h:column>
                         <h:inputText id="adminSearchByProductID" value="#{adminProducts.searchNumber}" >
-                            <f:ajax event="keyup" render="datatable" />
+                            <f:ajax event="keyup" render="productDatatable" />
                         </h:inputText>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Search By Product Name:" /></td>
-                    <td>
+                    </h:column>
+
+                    <h:column><h:outputText value="Search By Product Name:" /></h:column>
+                    <h:column>
                         <h:inputText id="adminSearchByProductName" value="#{adminProducts.searchProductName}" >
-                            <f:ajax event="keyup" render="datatable" />
+                            <f:ajax event="keyup" render="productDatatable" />
                         </h:inputText>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h:dataTable styleClass="datatable" id="datatable"
-                                     value="#{adminProducts.collection}" var="product">
-                            <c:choose>
-                                <c:when test="#{adminProducts.collection.size() gt 0}">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Product ID"/>
-                                </f:facet> 
-                                 <h:outputText value="#{product.ID}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Product Name"/>
-                                </f:facet> 
-                                <h:outputText value="#{product.productName}" />
-                            </h:column>
-                             <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Description" />
-                                </f:facet> 
-                                 <h:outputText value="#{product.description}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Price" />
-                                </f:facet> 
-                                <h:outputText value="#{product.price}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Categories" />
-                                </f:facet> 
-                                <h:panelGroup>
-                                    <h:dataTable styleClass="producttable" id="cattable"
-                                                 value="#{product.categories}" var="category">
+                    </h:column>
+
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column>
+                        <div id="productGrid">
+                            <h:dataTable styleClass="datatable" id="productDatatable"
+                                         value="#{adminProducts.collection}" var="product">
+                                <c:choose>
+                                    <c:when test="#{adminProducts.collection.size() gt 0}">
                                         <h:column>
-                                            <h:outputText value="#{category.categoryName}" />
+                                            <f:facet name="header">
+                                                <h:outputText value="Product ID"/>
+                                            </f:facet>
+                                            <h:outputText value="#{product.ID}" />
                                         </h:column>
-                                    </h:dataTable>
-                                </h:panelGroup>
-                           </h:column>
-                        </c:when>
-                        <c:otherwise>
-                            <f:facet name="header">
-                                <h:outputText value="No items match your search" />
-                            </f:facet>
-                        </c:otherwise>
-                        </c:choose>
-                        </h:dataTable>
-                    </td>
-                </tr>
-            </table>
-            
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Product Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{product.productName}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Description" />
+                                            </f:facet>
+                                            <h:outputText value="#{product.description}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Price"><f:convertNumber type="currency"/></h:outputText>
+                                            </f:facet>
+                                            <h:outputText value="#{product.price}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Categories" />
+                                            </f:facet>
+                                            <h:panelGroup>
+                                                <h:dataTable styleClass="categorytable" id="categorytable"
+                                                             value="#{product.categories}" var="category">
+                                                    <h:column>
+                                                        <h:outputText value="#{category.categoryName}" />
+                                                    </h:column>
+                                                </h:dataTable>
+                                            </h:panelGroup>
+                                        </h:column>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <f:facet name="header">
+                                            <h:outputText value="No items match your search" />
+                                        </f:facet>
+                                    </c:otherwise>
+                                </c:choose>
+                            </h:dataTable>
+                        </div>
+                    </h:column>
+
+                </h:panelGrid>
+            </h:form>
+
             <hr/>
-            
-            <table>
-                <tr>
-                    <td><h1><h:outputText value="Add Product" /></h1></td>
-                </tr>
-                <tr>
-                    <td colspan='2'><h:messages /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Product ID:" /></td>
-                    <td><h:inputText id="ProductID" value="#{products.ID}" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Product Name:" /></td>
-                    <td><h:inputText id="ProductName" value="#{products.productName}" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Product Description:" /></td>
-                    <td><h:inputTextarea id="ProductDescription" value="#{products.description}" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Price:" /></td>
-                    <td><h:inputText id="ProductPrice" value="#{products.price}" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+
+            <h:form>
+                <h:panelGrid columns="2">
+
+                    <h:column><h1><h:outputText value="Add Product" /></h1></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:messages /></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:outputText value="Product ID:" /></h:column>
+                    <h:column><h:inputText id="ProductID" value="#{products.ID}" /></h:column>
+
+                    <h:column><h:outputText value="Product Name:" /></h:column>
+                    <h:column><h:inputText id="ProductName" value="#{products.productName}" /></h:column>
+
+                    <h:column><h:outputText value="Product Description:" /></h:column>
+                    <h:column><h:inputTextarea id="ProductDescription" value="#{products.description}" /></h:column>
+
+                    <h:column><h:outputText value="Price:" /></h:column>
+                    <h:column>$<h:inputText id="ProductPrice" value="#{products.price}" /></h:column>
+
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column>
                         <h:commandButton style='float: right;' value="Save Product"
                                          action="#{adminProducts.createProduct()}">
                             <f:param name="v" value="manage_products" />
                         </h:commandButton>
-                    </td>
-                </tr>
-            </table>
+                    </h:column>
+
+                </h:panelGrid>
+            </h:form>
         </div>
-        
-        <div id="productGrid" style="float: right;">
-            <table>
-                <tr>
-                    <td><h1><h:outputText value="Search Categories" /></h1></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Search By Category ID:" /></td>
-                    <td>
+
+        <div id="adminCategoryBox">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:column><h1><h:outputText value="Search Categories" /></h1></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:outputText value="Search By Category ID:" /></h:column>
+                    <h:column>
                         <h:inputText id="categorySearchByOrder" value="#{adminCategories.searchNumber}" >
-                            <f:ajax event="keyup" render="categorytable" />
+                            <f:ajax event="keyup" render="categoryDatatable" />
                         </h:inputText>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Search By Category Name:" /></td>
-                    <td>
+                    </h:column>
+
+                    <h:column><h:outputText value="Search By Category Name:" /></h:column>
+                    <h:column>
                         <h:inputText id="categorySearchByUsername" value="#{adminCategories.searchCategoryName}" >
-                            <f:ajax event="keyup" render="categorytable" />
+                            <f:ajax event="keyup" render="categoryDatatable" />
                         </h:inputText>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <h:dataTable styleClass="datatable" id="categorytable"
-                                     value="#{adminCategories.collection}" var="category">
-                            <c:choose>
-                            <c:when test="#{adminCategories.collection.size() gt 0}">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Category ID" />
-                                </f:facet> 
-                                 <h:outputText value="#{category.CID}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Category Name" />
-                                </f:facet> 
-                                <h:outputText value="#{category.categoryName}" />
-                            </h:column>
-                            </c:when>
-                            <c:otherwise>
-                                <f:facet name="header">
-                                    <h:outputText value="No items match your search" />
-                                </f:facet>
-                            </c:otherwise>
-                            </c:choose>
-                        </h:dataTable>
-                    </td>
-                </tr> 
-            </table>
-            
+                    </h:column>
+
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column>
+                        <div id="productGrid">
+                            <h:dataTable styleClass="datatable" id="categoryDatatable"
+                                         value="#{adminCategories.collection}" var="category">
+                                <c:choose>
+                                    <c:when test="#{adminCategories.collection.size() gt 0}">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Category ID" />
+                                            </f:facet>
+                                            <h:outputText value="#{category.CID}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Category Name" />
+                                            </f:facet>
+                                            <h:outputText value="#{category.categoryName}" />
+                                        </h:column>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <f:facet name="header">
+                                            <h:outputText value="No items match your search" />
+                                        </f:facet>
+                                    </c:otherwise>
+                                </c:choose>
+                            </h:dataTable>
+                        </div>
+                    </h:column>
+
+                </h:panelGrid>
+            </h:form>
+
             <hr/>
-            
-            <table>
-                <tr>
-                    <td><h1><h:outputText value="Add Category" /></h1></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><h:messages /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Category ID:" /></td>
-                    <td><h:inputText id="categoryID" value="#{categories.CID}" /></td>
-                </tr>
-                <tr>
-                    <td><h:outputText value="Category Name:" /></td>
-                    <td><h:inputText id="categoryName" value="#{categories.categoryName}" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:column><h1><h:outputText value="Add Category" /></h1></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:messages /></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:outputText value="Category ID:" /></h:column>
+                    <h:column><h:inputText id="categoryID" value="#{categories.CID}" /></h:column>
+
+                    <h:column><h:outputText value="Category Name:" /></h:column>
+                    <h:column><h:inputText id="categoryName" value="#{categories.categoryName}" /></h:column>
+
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column>
                         <h:commandButton style='float: right;' value="Save Category"
                                          action="#{adminCategories.createCategory()}">
                             <f:param name="v" value="manage_products" />
                         </h:commandButton>
-                    </td>
-                </tr>
-            </table>
+                    </h:column>
+                </h:panelGrid>
+
+            </h:form>
         </div>
-        
-        </h:form>
-    </div>
+
+    </div> <!-- End Wrapper -->
 </ui:composition>
 

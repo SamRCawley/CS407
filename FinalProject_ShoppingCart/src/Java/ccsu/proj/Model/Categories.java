@@ -24,61 +24,55 @@ import javax.persistence.Table;
  *
  * @author Samuel Cawley
  */
-
 @ManagedBean
 @Entity
-@Table(name="CATEGORIES")
+@Table(name = "CATEGORIES")
 @ViewScoped
 @NamedQueries({
     @NamedQuery(name = "Categories.findAll", query = "SELECT c FROM Categories c"),
     @NamedQuery(name = "Categories.byID", query = "SELECT c FROM Categories c WHERE c.cid = :number"),
     @NamedQuery(name = "Categories.byName", query = "SELECT c FROM Categories c WHERE c.categoryName LIKE :categoryname")})
 public class Categories implements Serializable {
+
     @JoinTable(name = "PRODUCTS_CATEGORIES", joinColumns = {
         @JoinColumn(name = "CID", referencedColumnName = "CID")}, inverseJoinColumns = {
         @JoinColumn(name = "PID", referencedColumnName = "ID")})
     @ManyToMany
     private List<Products> productsList;
-
     @Id
-    @Column(name="CID")
-    private int cid;;
+    @Column(name = "CID")
+    private int cid;
+    ;
     
-    @Column(name="CATEGORYNAME")
+    @Column(name = "CATEGORYNAME")
     private String categoryName;
-    
-    @ManyToMany(mappedBy="categories")
+    @ManyToMany(mappedBy = "categories")
     private Set<Products> products = new HashSet();
-    
-    public Categories(){}
-    
-    public int getCID()
-    {
+
+    public Categories() {
+    }
+
+    public int getCID() {
         return cid;
     }
-    
-    public void setCID(int cid)
-    {
+
+    public void setCID(int cid) {
         this.cid = cid;
     }
-    
-    public String getCategoryName()
-    {
+
+    public String getCategoryName() {
         return categoryName;
     }
-    
-    public void setCategoryName(String categoryName)
-    {
+
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
-     public Set<Products> getProducts()
-    {
+    public Set<Products> getProducts() {
         return products;
     }
-    
-    public void setProducts(Set<Products> products)
-    {
+
+    public void setProducts(Set<Products> products) {
         this.products = products;
     }
 
@@ -89,5 +83,4 @@ public class Categories implements Serializable {
     public void setProductsList(List<Products> productsList) {
         this.productsList = productsList;
     }
-    
 }

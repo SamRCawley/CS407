@@ -18,69 +18,80 @@ import javax.transaction.UserTransaction;
  */
 @ManagedBean()
 public class adminCategories {
-    @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
+
+    @PersistenceUnit(unitName = "FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
     private UserTransaction userTransaction;
     @ManagedProperty(value = "#{categories}")
-    private Categories categories;   
-    private List<Categories> collection;
+    private Categories categories;
+    private Collection<Categories> collection;
     private int searchNumber;
     private String categoryname;
-    
+
     public void setSearchNumber(int searchNumber) {
         this.searchNumber = searchNumber;
         searchByNumber();
     }
-    
+
     public int getSearchNumber() {
         return searchNumber;
     }
-    
-    public List searchByNumber() {
+
+    public void searchByNumber() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createNamedQuery("Categories.byID");        
+        Query query = entityManager.createNamedQuery("Categories.byID");
         query.setParameter("number", searchNumber);
         collection = query.getResultList();
-        
-        return collection;
     }
-    
+
     public void setSearchCategoryName(String categoryname) {
         this.categoryname = categoryname + "%";
         searchByCategoryName();
     }
-    
-    public String getSearchCategoryName(){
+
+    public String getSearchCategoryName() {
         return categoryname;
     }
-    
-    public List searchByCategoryName() {
+
+    public void searchByCategoryName() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createNamedQuery("Categories.byName");        
+        Query query = entityManager.createNamedQuery("Categories.byName");
         query.setParameter("categoryname", categoryname);
         collection = query.getResultList();
-        
-        return collection;
     }
-    
+
     public Collection<Categories> getCollection() {
         return collection;
     }
-    
+
     public List<Categories> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery("Categories.findAll");
-        collection = query.getResultList();  
-        
-        return collection;
+        List<Categories> all = query.getResultList();
+        return all;
     }
-    
+
     public Categories getCategories() {
         return categories;
-    }   
-    
+    }
+
     public void setCategories(Categories categories) {
         this.categories = categories;
+    }
+
+    public String createCategory() {
+        String returnValue = "error_saving_category";
+        try {
+            userTransaction.begin();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            entityManager.persist(categories);
+            userTransaction.commit();
+            entityManager.close();
+            returnValue = "category_saved";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return returnValue;
     }
 }
