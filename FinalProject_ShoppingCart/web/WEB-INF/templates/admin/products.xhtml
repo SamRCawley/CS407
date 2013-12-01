@@ -57,9 +57,9 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                <h:outputText value="Price"/>
+                                                <h:outputText value="Price"><f:convertNumber type="currency"/></h:outputText>
                                             </f:facet>
-                                            <h:outputText value="#{product.price}"><f:convertNumber type="currency"/></h:outputText>
+                                            <h:outputText value="#{product.price}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
@@ -101,18 +101,18 @@
 
                     <h:column><h:outputLabel for="ProductName" value="Product Name:" /></h:column>
                     <h:column>
-                        <h:inputText id="ProductName" value="#{adminProducts.product.productName}" required="true"
+                        <h:inputText id="ProductName" value="#{products.productName}" required="true"
                                            requiredMessage="Please enter a valid product name">
                             <f:validator validatorId="productNameValidator" />
                         </h:inputText>
                     </h:column>
 
                     <h:column><h:outputLabel for="ProductDescription" value="Product Description:" /></h:column>
-                    <h:column><h:inputTextarea id="ProductDescription" value="#{adminProducts.product.description}" /></h:column>
+                    <h:column><h:inputTextarea id="ProductDescription" value="#{products.description}" /></h:column>
 
                     <h:column><h:outputLabel for="ProductPrice" value="Price:" /></h:column>
                     <h:column>
-                        $<h:inputText id="ProductPrice" value="#{adminProducts.product.price}" required="true"
+                        $<h:inputText id="ProductPrice" value="#{products.price}" required="true"
                                             requiredMessage="Please enter a valid price">
                             <f:validator validatorId="productPriceValidator" />
                         </h:inputText>
