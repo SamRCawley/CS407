@@ -6,12 +6,13 @@
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <div id='wrapper'>
-        
+
         <h1><h:outputText value="Existing Accounts" /></h1>
         <br/>
-        
-        <h:form>
-            <div id="productGrid" style="text-align: center;">
+
+
+        <div id="productGrid" style="text-align: center;">
+            <h:form>
                 <h:dataTable styleClass="datatable" id="datatable"
                              value="#{adminAccounts.accounts}" var="s_account">
                     <h:column>
@@ -55,18 +56,84 @@
                         </f:facet>
                         <h:commandButton value="Edit" action="#{adminAccounts.editAccount()}">
                             <f:param name="v" value="manage_accounts" />
+                            <f:param name="id" value="#{s_account.ID}" />
                         </h:commandButton>
                         <h:commandButton value="Delete" action="#{adminAccounts.removeAccount()}">
                             <f:param name="v" value="manage_accounts" />
+                            <f:param name="id" value="#{s_account.ID}" />
                         </h:commandButton>
                     </h:column>
                 </h:dataTable>
-            </div>
+            </h:form>
+        </div>
 
-            <div id="adminAccountBox">
+        <hr/>
 
-            </div>
-        </h:form>
+        <div id="adminAccountBox">
+            <h:form>
+                <h:panelGrid columns="3">
+
+                    <h:column><h1>Create an Account</h1></h:column>
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:outputLabel for="Username" value="Username:" /></h:column>
+                    <h:column>
+                        <h:inputText id='Username' value="#{adminAccounts.account.username}" required="true"
+                                     requiredMessage="Please enter a valid username">
+                            <f:validator validatorId="usernameValidator" />
+                        </h:inputText>
+                    </h:column>
+                    <h:column><h:message styleClass="message" for='Username' /></h:column>
+
+                    <h:column><h:outputLabel for="Email" value="Email Address:" /></h:column>
+                    <h:column>
+                        <h:inputText id="Email" value="#{adminAccounts.account.email}" required="true"
+                                     requiredMessage="Please enter an email address">
+                            <f:validator validatorId="emailValidator" />
+                        </h:inputText>
+                    </h:column>
+                    <h:column><h:message styleClass="message" for="Email" /></h:column>
+
+                    <h:column><h:outputLabel for="Password" value="Password:" /></h:column>
+                    <h:column>
+                        <h:inputSecret id="Password" value="#{adminAccounts.account.PW_Hash}" required="true" 
+                                       requiredMessage="Please enter a password">
+                            <f:validator validatorId="passwordValidator" />
+                            <f:attribute name="confirm" value="#{confirm}" />
+                        </h:inputSecret>
+                    </h:column>
+                    <h:column><h:message styleClass="message" for="Password" /></h:column>
+
+                    <h:column><h:outputLabel for="Confirm" value="Confirm Password:" /></h:column>
+                    <h:column>
+                        <h:inputSecret id="Confirm" binding="#{confirm}" required="true" 
+                                       requiredMessage="Please confirm your password" />
+                    </h:column>
+                    <h:column><h:message styleClass="message" for="Confirm" /></h:column>
+
+                    <h:column><h:outputLabel for='Permission' value='Permission Level:' /></h:column>
+                    <h:column>
+                        <h:selectOneMenu id='Permission' value="#{adminAccounts.account.permission_Level}">
+                            <f:selectItem id="user" itemLabel="User" itemValue="#{Short.parseShort(0)}" />
+                            <f:selectItem id="admin" itemLabel="Admin" itemValue="#{Short.parseShort(1)}" />
+                        </h:selectOneMenu>
+                    </h:column>
+                    <h:column><h:panelGroup /></h:column>
+
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column><h:panelGroup /></h:column>
+                    <h:column>
+                        <h:commandButton id="AddAccount" style="float:right;"
+                                         value="Add Account" action="#{adminAccounts.registerNewUser}">
+                            <f:param name="v" value="manage_accounts" />
+                        </h:commandButton>
+                    </h:column>
+
+                </h:panelGrid>
+            </h:form>
+        </div>
+
     </div> <!-- End Wrapper -->
 </ui:composition>
 
