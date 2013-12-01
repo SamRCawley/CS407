@@ -9,7 +9,7 @@
     <h:form>
         
         <div id="searchbar">
-            <h:outputText value="Product Search: "/>
+            <h:outputLabel for="productname" value="Product Search: "/>
             <h:inputText id="productname" value="#{products.productName}">
                 <f:ajax event="keyup" render="datatable"/>
             </h:inputText>
