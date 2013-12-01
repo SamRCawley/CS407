@@ -5,6 +5,7 @@
 package ccsu.proj.Controllers;
 
 
+import ccsu.proj.Model.Account;
 import ccsu.proj.Model.Orders;
 import ccsu.proj.Model.OrdersProducts;
 import ccsu.proj.Model.Products;
@@ -65,35 +66,43 @@ public class ShoppingCart implements Serializable {
         cart.clear();
     }
     
-    public String finalizeOrder() {
-        Orders order= new Orders();
-        Set<OrdersProducts> ordersProducts = new HashSet();
-        java.util.Date utilDate = new Date();
-        java.sql.Date date = new java.sql.Date(utilDate.getTime());
-        order.setDate(date);
-        for(Products p: cart) {
-            OrdersProducts o = new OrdersProducts();
-            o.setOrdernum(order);
-            o.setProduct(p);
-            o.setQuantity(p.getQuantity());
-            ordersProducts.add(o);
-        }
-        order.setId(1);  //TODO: Add connection to Accounts when login is finished
-        String saved = "error";
-        try {
-            userTransaction.begin();
-            EntityManager em = entityManagerFactory.createEntityManager();
-            em.persist(order);
-            for(OrdersProducts o: ordersProducts) {
-                em.persist(o);
+    public String finalizeOrder(Account account) {
+        String result = "error";
+        int id = account.getId();
+        if(id == 0)
+        {
+            result = "index?faces-redirect=true&v=register"; 
+        } 
+        else
+        {
+            Orders order= new Orders();
+            Set<OrdersProducts> ordersProducts = new HashSet();
+            java.util.Date utilDate = new Date();
+            java.sql.Date date = new java.sql.Date(utilDate.getTime());
+            order.setDate(date);
+            for(Products p: cart) {
+                OrdersProducts o = new OrdersProducts();
+                o.setOrdernum(order);
+                o.setProduct(p);
+                o.setQuantity(p.getQuantity());
+                ordersProducts.add(o);
             }
-            userTransaction.commit();
-            em.close();
-            saved = "index?faces-redirect=true&v=confirmation";
-        } catch (Exception e) {
-            e.printStackTrace();
+            order.setId(id);  //TODO: Add connection to Accounts when login is finished
+            try {
+                userTransaction.begin();
+                EntityManager em = entityManagerFactory.createEntityManager();
+                em.persist(order);
+                for(OrdersProducts o: ordersProducts) {
+                    em.persist(o);
+                }
+                userTransaction.commit();
+                em.close();
+                result = "index?faces-redirect=true&v=confirmation";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return saved;
+        return result;
     }
     
     public float getTotal() {
