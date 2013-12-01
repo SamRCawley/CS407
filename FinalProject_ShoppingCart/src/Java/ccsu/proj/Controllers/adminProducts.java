@@ -23,7 +23,7 @@ public class adminProducts {
     private EntityManagerFactory entityManagerFactory;
     @Resource
     private UserTransaction userTransaction;
-    private Products product;   
+    private Products product = new Products();   
     private List<Products> collection;
     private int searchNumber;
     private String productname;
@@ -88,13 +88,13 @@ public class adminProducts {
     public String createProduct(){
         String returnValue = "error_saving_product";
         try {
-            incrementProductID();
+            //incrementProductID();
             userTransaction.begin();        
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.persist(product);
             userTransaction.commit();
             entityManager.close();
-            returnValue = "product_saved";
+            returnValue = "index";
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -83,4 +83,23 @@ public class Categories implements Serializable {
     public void setProductsList(List<Products> productsList) {
         this.productsList = productsList;
     }
+    
+    @Override
+    public String toString()
+    {
+        return categoryName;
+    }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null) return false;
+        if (!(obj instanceof Categories)) return false;
+
+        if (this.cid == ((Categories)obj).getCID()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
