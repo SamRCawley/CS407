@@ -68,7 +68,7 @@ public class ShoppingCart implements Serializable {
     
     public String finalizeOrder(Account account) {
         String result = "error";
-        int id = account.getId();
+        int id = account.getID();
         if(id == 0)
         {
             result = "index?faces-redirect=true&v=register"; 

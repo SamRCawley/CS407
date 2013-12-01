@@ -41,11 +41,11 @@ public class Account implements Serializable {
     public Account() {
     }
     
-    public int getId() {
+    public int getID() {
         return id;
     }
     
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
     

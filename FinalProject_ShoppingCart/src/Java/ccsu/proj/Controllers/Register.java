@@ -60,7 +60,7 @@ public class Register implements Serializable {
             e.printStackTrace();
         }
         
-        account.setId(newID);
+        account.setID(newID);
     }
     
     public void setAccount(Account account) {

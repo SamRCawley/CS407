@@ -10,7 +10,7 @@
     
     <div id="loginbox">
     <c:choose>
-        <c:when test="${login.account.id eq 0}">
+        <c:when test="${login.account.ID eq 0}">
             <h:form>
                 <h:outputLabel for="username" value="Username: " />
                 <h:inputText id="username" styleClass="username" value="${account.username}" />

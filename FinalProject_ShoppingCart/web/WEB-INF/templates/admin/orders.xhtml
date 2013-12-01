@@ -11,14 +11,16 @@
             <h:form>
                 <h:panelGrid columns="2">
 
-                    <h:column><h:outputText value="Search By Order Number:" /></h:column>
+                    <h:column><h:outputLabel for="adminSearchByOrder"
+                                             value="Search By Order Number:" /></h:column>
                     <h:column>
                         <h:inputText id="adminSearchByOrder" value="#{adminOrders.searchNumber}" >
                             <f:ajax event="keyup" render="datatable" />
                         </h:inputText>
                     </h:column>
 
-                    <h:column><h:outputText value="Search By Username:" /></h:column>
+                    <h:column><h:outputLabel for="adminSearchByUsername"
+                                             value="Search By Username:" /></h:column>
                     <h:column>
                         <h:inputText id="adminSearchByUsername" value="#{adminOrders.searchUsername}" >
                             <f:ajax event="keyup" render="datatable" />

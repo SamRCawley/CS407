@@ -83,6 +83,7 @@ public class adminCategories {
     public String createCategory() {
         String returnValue = "error_saving_category";
         try {
+            incrementCategoryID();
             userTransaction.begin();
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.persist(categories);
@@ -93,5 +94,19 @@ public class adminCategories {
             e.printStackTrace();
         }
         return returnValue;
+    }
+    
+    private void incrementCategoryID() {
+        int newID = 0;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        String selectSQL = "select max(c.cid) from Categories c"; 
+        
+        try {
+            newID = (Integer)entityManager.createQuery(selectSQL).getSingleResult() + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        categories.setCID(newID);
     }
 }

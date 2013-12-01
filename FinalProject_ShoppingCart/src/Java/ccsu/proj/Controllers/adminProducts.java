@@ -89,6 +89,7 @@ public class adminProducts {
     public String createProduct(){
         String returnValue = "error_saving_product";
         try {
+            incrementProductID();
             userTransaction.begin();        
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.persist(product);
@@ -100,6 +101,21 @@ public class adminProducts {
         }
         return returnValue;
     }
+    
+    private void incrementProductID() {
+        int newID = 0;
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        String selectSQL = "select max(p.id) from Products p"; 
+        
+        try {
+            newID = (Integer)entityManager.createQuery(selectSQL).getSingleResult() + 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        product.setID(newID);
+    }
+    
     // Not Persisting not sure why... 
     public String addToCategory(){
         String returnValue = "add to Category Failed";
@@ -132,6 +148,5 @@ public class adminProducts {
         }
         System.out.println("theend");
         return returnValue;
-        
     }
 }

@@ -14,14 +14,16 @@
                     <h:column><h1><h:outputText value="Search Products" /></h1></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:outputText value="Search By Product ID:" /></h:column>
+                    <h:column><h:outputLabel for="adminSearchByProductID"
+                                             value="Search By Product ID:" /></h:column>
                     <h:column>
                         <h:inputText id="adminSearchByProductID" value="#{adminProducts.searchNumber}" >
                             <f:ajax event="keyup" render="productDatatable" />
                         </h:inputText>
                     </h:column>
 
-                    <h:column><h:outputText value="Search By Product Name:" /></h:column>
+                    <h:column><h:outputLabel for="adminSearchByProductName"
+                                             value="Search By Product Name:" /></h:column>
                     <h:column>
                         <h:inputText id="adminSearchByProductName" value="#{adminProducts.searchProductName}" >
                             <f:ajax event="keyup" render="productDatatable" />
@@ -94,19 +96,16 @@
                     <h:column><h1><h:outputText value="Add Product" /></h1></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:messages /></h:column>
+                    <h:column><h:messages styleClass="message" /></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:outputText value="Product ID:" /></h:column>
-                    <h:column><h:inputText id="ProductID" value="#{products.ID}" /></h:column>
-
-                    <h:column><h:outputText value="Product Name:" /></h:column>
+                    <h:column><h:outputLabel for="ProductName" value="Product Name:" /></h:column>
                     <h:column><h:inputText id="ProductName" value="#{products.productName}" /></h:column>
 
-                    <h:column><h:outputText value="Product Description:" /></h:column>
+                    <h:column><h:outputLabel for="ProductDescription" value="Product Description:" /></h:column>
                     <h:column><h:inputTextarea id="ProductDescription" value="#{products.description}" /></h:column>
 
-                    <h:column><h:outputText value="Price:" /></h:column>
+                    <h:column><h:outputLabel for="ProductPrice" value="Price:" /></h:column>
                     <h:column>$<h:inputText id="ProductPrice" value="#{products.price}" /></h:column>
 
                     <h:column><h:panelGroup /></h:column>
@@ -127,14 +126,16 @@
                     <h:column><h1><h:outputText value="Search Categories" /></h1></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:outputText value="Search By Category ID:" /></h:column>
+                    <h:column><h:outputLabel for="categorySearchByOrder"
+                                             value="Search By Category ID:" /></h:column>
                     <h:column>
                         <h:inputText id="categorySearchByOrder" value="#{adminCategories.searchNumber}" >
                             <f:ajax event="keyup" render="categoryDatatable" />
                         </h:inputText>
                     </h:column>
 
-                    <h:column><h:outputText value="Search By Category Name:" /></h:column>
+                    <h:column><h:outputLabel for="categorySearchByUsername"
+                                             value="Search By Category Name:" /></h:column>
                     <h:column>
                         <h:inputText id="categorySearchByUsername" value="#{adminCategories.searchCategoryName}" >
                             <f:ajax event="keyup" render="categoryDatatable" />
@@ -181,14 +182,16 @@
                     <h:column><h1><h:outputText value="Add Category" /></h1></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:messages /></h:column>
+                    <h:column><h:messages styleClass="message" /></h:column>
                     <h:column><h:panelGroup /></h:column>
 
-                    <h:column><h:outputText value="Category ID:" /></h:column>
-                    <h:column><h:inputText id="categoryID" value="#{categories.CID}" /></h:column>
-
-                    <h:column><h:outputText value="Category Name:" /></h:column>
-                    <h:column><h:inputText id="categoryName" value="#{categories.categoryName}" /></h:column>
+                    <h:column><h:outputLabel for="categoryName" value="Category Name:" /></h:column>
+                    <h:column>
+                        <h:inputText id="categoryName" value="#{categories.categoryName}" required="true" 
+                                           requiredMessage="Please enter a valid category name">
+                            <f:validator validatorId="categoryValidator" />
+                        </h:inputText>
+                    </h:column>
 
                     <h:column><h:panelGroup /></h:column>
                     <h:column>
@@ -197,6 +200,7 @@
                             <f:param name="v" value="manage_products" />
                         </h:commandButton>
                     </h:column>
+                    
                 </h:panelGrid>
 
             </h:form>
