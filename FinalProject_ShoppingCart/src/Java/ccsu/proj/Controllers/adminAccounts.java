@@ -9,12 +9,10 @@ import ccsu.proj.Model.Products;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -26,16 +24,14 @@ import javax.transaction.UserTransaction;
  * @author Jason
  */
 @ManagedBean
-@SessionScoped
 public class adminAccounts implements Serializable {
 
     @PersistenceUnit(unitName = "FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
     private UserTransaction userTransaction;
-    @ManagedProperty(value = "#{s_account}")
+    @ManagedProperty(value = "#{account}")
     private Account account;
-    FacesContext fc = FacesContext.getCurrentInstance();
 
     public adminAccounts() {
     }
@@ -54,7 +50,7 @@ public class adminAccounts implements Serializable {
     }
 
     public String registerNewUser() {
-        String returnValue = "registrationError";
+        String returnValue = "error";
         try {
             incrementAccountID(); //Make sure account id is not zero
             userTransaction.begin();
@@ -62,7 +58,7 @@ public class adminAccounts implements Serializable {
             em.persist(account);
             userTransaction.commit();
             em.close();
-            returnValue = "index?faces-redirect=true&v=manage_accounts";
+            returnValue = "success";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,21 +85,22 @@ public class adminAccounts implements Serializable {
         return returnValue;
     }
 
+    //Does not work
     public String removeAccount() {
         String returnValue = "error";
-        try {
-            userTransaction.begin();
-            EntityManager em = entityManagerFactory.createEntityManager();
-            Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-            int id = Integer.parseInt(params.get("id"));
-            account = em.find(Account.class, id);
-            em.remove(account);
-            userTransaction.commit();
-            em.close();
-            returnValue = "success";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            userTransaction.begin();
+//            EntityManager em = entityManagerFactory.createEntityManager();
+//            FacesContext context = FacesContext.getCurrentInstance();
+//            Map<String, String> requestMap = context.getExternalContext().getRequestParameterMap();
+//            account = em.find(Account.class, requestMap.get("id"));
+//            em.remove(account);
+//            userTransaction.commit();
+//            em.close();
+//            returnValue = "success";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return returnValue;
     }
 
