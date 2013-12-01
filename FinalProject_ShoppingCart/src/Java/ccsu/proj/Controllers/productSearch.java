@@ -36,12 +36,9 @@ public class productSearch {
     
     FacesContext fc = FacesContext.getCurrentInstance();
     
-    public List getMatchingProducts() {
+    public List getMatchingProducts(String category) {
         List<Products> products = new ArrayList();
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Map<String,String> params = 
-        fc.getExternalContext().getRequestParameterMap();
-        String category = params.get("cat");
         if(category == null)
             category = "";
         String selectSQL = "select p from Products p where p.productName like :name AND EXISTS(SELECT c.categoryName  FROM p.categories c WHERE c.categoryName like :category)"; 

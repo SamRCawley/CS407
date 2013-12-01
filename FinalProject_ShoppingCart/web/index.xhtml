@@ -27,23 +27,23 @@
                 <ui:insert name="content">
                     <!-- Ternary to Switch to support multiple 'v' values -->
                     <c:choose>
-                        <c:when test="#{param['v'] == 'cart'}">
+                        <c:when test="#{navigation.view == 'cart'}">
                             <ui:include src="/WEB-INF/templates/cart.xhtml" />
                         </c:when>
                         
-                        <c:when test="#{param['v'] == 'register'}">
+                        <c:when test="#{navigation.view == 'register'}">
                             <ui:include src="/WEB-INF/templates/register.xhtml" />
                         </c:when>
-                        <c:when test="#{param['v'] == 'confirmation'}">
+                        <c:when test="#{navigation.view == 'confirmation'}">
                             <ui:include src="/WEB-INF/templates/confirmation.xhtml" />
                         </c:when>
-                        <c:when test="#{param['v'] == 'manage_orders' and login.account.permission_Level eq 1}">
+                        <c:when test="#{navigation.view == 'manage_orders' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/orders.xhtml" />
                         </c:when>
-                        <c:when test="#{param['v'] == 'manage_products' and login.account.permission_Level eq 1}">
+                        <c:when test="#{navigation.view == 'manage_products' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/products.xhtml" />
                         </c:when>
-                        <c:when test="#{param['v'] == 'manage_accounts' and login.account.permission_Level eq 1}">
+                        <c:when test="#{navigation.view == 'manage_accounts' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/accounts.xhtml" />
                         </c:when>
                         <c:otherwise>
