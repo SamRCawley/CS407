@@ -4,7 +4,6 @@
  */
 package ccsu.proj.Controllers;
 
-
 import ccsu.proj.Model.Account;
 import ccsu.proj.Model.Orders;
 import ccsu.proj.Model.OrdersProducts;
@@ -25,62 +24,61 @@ import javax.transaction.UserTransaction;
  *
  * @author Jason
  */
-
 @ManagedBean
 @SessionScoped
 public class ShoppingCart implements Serializable {
-    @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
+
+    @PersistenceUnit(unitName = "FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @Resource
-    private UserTransaction userTransaction;  
+    private UserTransaction userTransaction;
     private Set<Products> cart = new HashSet();
-    
+
     public Set getShoppingCartItems() {
         return cart;
     }
-    
+
     public void addItemToCart(Products product) {
         boolean added = false;
-        for(Products p: cart) {
-            if(p.getID() == product.getID()) {
+        for (Products p : cart) {
+            if (p.getID() == product.getID()) {
                 p.setQuantity(p.getQuantity() + 1);
                 added = true;
             }
         }
-        if(!added)
+        if (!added) {
             cart.add(product);
+        }
     }
-    
+
     public void removeItemFromCart(Products product) {
-        for(Products p: cart) {
-            if(p.getID() == product.getID()) {
-                if(p.getQuantity() > 1)
+        for (Products p : cart) {
+            if (p.getID() == product.getID()) {
+                if (p.getQuantity() > 1) {
                     p.setQuantity(p.getQuantity() - 1);
-                else
+                } else {
                     cart.remove(product);
+                }
             }
         }
     }
-    
+
     public void clearShoppingCart() {
         cart.clear();
     }
-    
+
     public String finalizeOrder(Account account) {
         String result = "error";
         int id = account.getID();
-        if(id == 0)
-        {
-            result = "index?faces-redirect=true&v=register"; 
-        } 
-        else
-        {
-            Orders order= new Orders();
+        if (id == 0) {
+            result = "index?faces-redirect=true&v=register";
+        } else {
+            Orders order = new Orders();
             Set<OrdersProducts> ordersProducts = new HashSet();
             java.util.Date utilDate = new Date();
             java.sql.Date date = new java.sql.Date(utilDate.getTime());
             order.setDate(date);
-            for(Products p: cart) {
+            for (Products p : cart) {
                 OrdersProducts o = new OrdersProducts();
                 o.setOrdernum(order);
                 o.setProduct(p);
@@ -92,7 +90,7 @@ public class ShoppingCart implements Serializable {
                 userTransaction.begin();
                 EntityManager em = entityManagerFactory.createEntityManager();
                 em.persist(order);
-                for(OrdersProducts o: ordersProducts) {
+                for (OrdersProducts o : ordersProducts) {
                     em.persist(o);
                 }
                 userTransaction.commit();
@@ -104,10 +102,10 @@ public class ShoppingCart implements Serializable {
         }
         return result;
     }
-    
+
     public float getTotal() {
         float total = 0;
-        for(Products p : cart) {
+        for (Products p : cart) {
             total += p.getPrice() * p.getQuantity();
         }
         return total;

@@ -1,0 +1,72 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <div id='wrapper'>
+        
+        <h1><h:outputText value="Existing Accounts" /></h1>
+        <br/>
+        
+        <h:form>
+            <div id="productGrid" style="text-align: center;">
+                <h:dataTable styleClass="datatable" id="datatable"
+                             value="#{adminAccounts.accounts}" var="s_account">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Account ID" />
+                        </f:facet>
+                        <h:outputText value="#{s_account.ID}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Username" />
+                        </f:facet> 
+                        <h:outputText value="#{s_account.username}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email Address"/>
+                        </f:facet> 
+                        <h:outputText value="#{s_account.email}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Hash"/>
+                        </f:facet> 
+                        <h:outputText value="#{s_account.PW_Hash}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Permission Level"/>
+                        </f:facet> 
+                        <h:outputText value="#{s_account.permission_Level}" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Account Actions" />
+                        </f:facet>
+                        <h:commandButton value="Edit" action="#{adminAccounts.editAccount()}">
+                            <f:param name="v" value="manage_accounts" />
+                        </h:commandButton>
+                        <h:commandButton value="Delete" action="#{adminAccounts.removeAccount()}">
+                            <f:param name="v" value="manage_accounts" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+            <div id="adminAccountBox">
+
+            </div>
+        </h:form>
+    </div> <!-- End Wrapper -->
+</ui:composition>
+

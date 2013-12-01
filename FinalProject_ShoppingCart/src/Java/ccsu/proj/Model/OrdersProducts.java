@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author Sam Cawley
@@ -22,40 +21,34 @@ import javax.persistence.Table;
 @ManagedBean
 @Table(name = "ORDERS_PRODUCTS")
 public class OrdersProducts implements Serializable {
-    
+
     @Id
     @ManyToOne
-    @JoinColumn(name="ORDERNUM")
+    @JoinColumn(name = "ORDERNUM")
     private Orders orderNum;
-    
     @Id
     @ManyToOne
-    @JoinColumn(name="PID")
+    @JoinColumn(name = "PID")
     private Products product;
-       
     @Column(name = "QUANTITY")
     private int quantity;
 
     public OrdersProducts() {
     }
 
-    public Orders getOrdernum()
-    {
+    public Orders getOrdernum() {
         return orderNum;
     }
-    
-    public void setOrdernum(Orders orderNum)
-    {
+
+    public void setOrdernum(Orders orderNum) {
         this.orderNum = orderNum;
     }
-    
-    public Products getproduct()
-    {
+
+    public Products getproduct() {
         return product;
     }
-    
-    public void setProduct(Products product)
-    {
+
+    public void setProduct(Products product) {
         this.product = product;
     }
 
@@ -66,5 +59,4 @@ public class OrdersProducts implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 }

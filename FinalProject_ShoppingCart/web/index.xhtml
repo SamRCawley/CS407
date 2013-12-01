@@ -43,6 +43,9 @@
                         <c:when test="#{param['v'] == 'manage_products' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/products.xhtml" />
                         </c:when>
+                        <c:when test="#{param['v'] == 'manage_accounts' and login.account.permission_Level eq 1}">
+                            <ui:include src="/WEB-INF/templates/admin/accounts.xhtml" />
+                        </c:when>
                         <c:otherwise>
                             <ui:include src="/WEB-INF/templates/products.xhtml" />
                         </c:otherwise>
