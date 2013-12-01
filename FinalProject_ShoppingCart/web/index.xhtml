@@ -40,6 +40,9 @@
                         <c:when test="#{navigation.view == 'manage_orders' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/orders.xhtml" />
                         </c:when>
+                        <c:when test="#{navigation.view == 'manage_categories' and login.account.permission_Level eq 1}">
+                            <ui:include src="/WEB-INF/templates/admin/categories.xhtml" />
+                        </c:when>
                         <c:when test="#{navigation.view == 'manage_products' and login.account.permission_Level eq 1}">
                             <ui:include src="/WEB-INF/templates/admin/products.xhtml" />
                         </c:when>

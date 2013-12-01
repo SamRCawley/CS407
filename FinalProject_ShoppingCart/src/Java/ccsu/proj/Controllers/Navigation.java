@@ -14,7 +14,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class Navigation implements Serializable{
+public class Navigation implements Serializable {
     String view = null;
     String category = null;
     public void setView (String view)

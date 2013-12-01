@@ -6,83 +6,74 @@
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <div id='wrapper'>
-        
-        <h1><h:outputText value="Orders Search" /></h1>
 
-        <div class="productGrid">
-            <h:form>
-                <h:panelGrid columns="2">
+        <h:form>
 
-                    <h:column><h:outputLabel for="adminSearchByOrder"
-                                             value="Search By Order Number:" /></h:column>
-                    <h:column>
-                        <h:inputText id="adminSearchByOrder" value="#{adminOrders.searchNumber}" >
-                            <f:ajax event="keyup" render="datatable" />
-                        </h:inputText>
-                    </h:column>
+            <div id="searchbar">
+                <h1><h:outputText value="Orders Search" /></h1>
+                
+                <h:outputLabel for="adminSearchByOrder" value="Search By Order Number:" />
+                <h:inputText id="adminSearchByOrder" size="10" value="#{adminOrders.searchNumber}" >
+                    <f:ajax event="keyup" render="datatable" />
+                </h:inputText>
 
-                    <h:column><h:outputLabel for="adminSearchByUsername"
-                                             value="Search By Username:" /></h:column>
-                    <h:column>
-                        <h:inputText id="adminSearchByUsername" value="#{adminOrders.searchUsername}" >
-                            <f:ajax event="keyup" render="datatable" />
-                        </h:inputText>
-                    </h:column>
+                <h:outputLabel for="adminSearchByUsername" value="Search By Username:" 
+                               style="padding-left: 10px;"/>
+                <h:inputText id="adminSearchByUsername" value="#{adminOrders.searchUsername}" >
+                    <f:ajax event="keyup" render="datatable" />
+                </h:inputText>
+            </div>
 
-                    <h:column><h:panelGroup /></h:column>
-                    <h:column>
-                        <h:dataTable styleClass="datatable" id="datatable"
-                                     value="#{adminOrders.collection}" var="order">
-                            <c:choose>
-                                <c:when test='#{adminOrders.collection.size() gt 0}'>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Order Number" />
-                                        </f:facet>
-                                        <h:outputText value="#{order.ordernum}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="User"/>
-                                        </f:facet>
-                                        <h:outputText value="#{order.account.username}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Date"/>
-                                        </f:facet>
-                                        <h:outputText value="#{order.date}" />
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText value="Products" />
-                                        </f:facet>
-                                        <h:panelGroup>
-                                            <h:dataTable styleClass="producttable" id="producttable"
-                                                         value="#{order.ordersProducts}" var="orderProduct" border="0"
-                                                         cellpadding="5" cellspacing="5">
-                                                <h:column>
-                                                    <h:outputText value="#{orderProduct.product.productName}" />
-                                                </h:column>
-                                                <h:column>
-                                                    <h:outputText value="#{orderProduct.quantity}" />
-                                                </h:column>
-                                            </h:dataTable>
-                                        </h:panelGroup>
-                                    </h:column>
-                                </c:when>
-                                <c:otherwise>
-                                    <f:facet name="header">
-                                        <h:outputText value="No items match your search" />
-                                    </f:facet>
-                                </c:otherwise>
-                            </c:choose>
-                        </h:dataTable>
-                    </h:column>
-                </h:panelGrid>
+            <div class="productGrid">
+                <h:dataTable styleClass="datatable" id="datatable"
+                             value="#{adminOrders.collection}" var="order">
+                    <c:choose>
+                        <c:when test='#{adminOrders.collection.size() gt 0}'>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Order Number" />
+                                </f:facet>
+                                <h:outputText value="#{order.ordernum}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="User"/>
+                                </f:facet>
+                                <h:outputText value="#{order.account.username}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Date"/>
+                                </f:facet>
+                                <h:outputText value="#{order.date}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Products" />
+                                </f:facet>
+                                <h:panelGroup>
+                                    <h:dataTable styleClass="categorytable" id="categorytable"
+                                                 value="#{order.ordersProducts}" var="orderProduct">
+                                        <h:column>
+                                            <h:outputText value="#{orderProduct.product.productName}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:outputText value="#{orderProduct.quantity}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:panelGroup>
+                            </h:column>
+                        </c:when>
+                        <c:otherwise>
+                            <f:facet name="header">
+                                <h:outputText value="No items match your search" />
+                            </f:facet>
+                        </c:otherwise>
+                    </c:choose>
+                </h:dataTable>
+            </div>
 
-            </h:form>
-        </div>
+        </h:form>
 
     </div> <!-- End Wrapper -->
 </ui:composition>
