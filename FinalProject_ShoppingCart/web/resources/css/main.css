@@ -94,11 +94,3 @@ tr:last-child {
     width: 100%;
 }
 
-#adminProductBox {
-    float: left;
-}
-
-#adminCategoryBox {
-    float: right;
-}
-
