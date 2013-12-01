@@ -4,48 +4,48 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
+
     <h:head><title>Register</title></h:head>
-    
+
     <div id ='wrapper'>
-    <h:form>
-        <h1>Register a new account and make checking out easier!</h1>
-        <h:panelGrid columns="3">
-            <h:outputLabel for="r_username" value="Username:" />
-            <h:inputText id="r_username" value="#{account.username}" required="true"
-                         requiredMessage="Please enter a username">
-                <f:validator validatorId="usernameValidator" />
-            </h:inputText>
-            <h:message styleClass="message" for="r_username" />
-            
-            <h:outputLabel for="r_email" value="Email Address:" />
-            <h:inputText id="r_email" value="#{account.email}" required="true"
-                         requiredMessage="Please enter an email address">
-                <f:validator validatorId="emailValidator" />
-            </h:inputText>
-            <h:message styleClass="message" for="r_email" />
+        <h:form>
+            <h1>Register a new account and make checking out easier!</h1>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="r_username" value="Username:" />
+                <h:inputText id="r_username" value="#{account.username}" required="true"
+                             requiredMessage="Please enter a username">
+                    <f:validator validatorId="usernameValidator" />
+                </h:inputText>
+                <h:message styleClass="message" for="r_username" />
 
-            <h:outputLabel for="r_password" value="Password:" />
-            <h:inputSecret id="r_password" value="#{account.PW_Hash}" required="true" 
-                           requiredMessage="Please enter a password">
-                <f:validator validatorId="passwordValidator" />
-                <f:attribute name="confirm" value="#{confirm}" />
-            </h:inputSecret>
-            <h:message styleClass="message" for="r_password" />
+                <h:outputLabel for="r_email" value="Email Address:" />
+                <h:inputText id="r_email" value="#{account.email}" required="true"
+                             requiredMessage="Please enter an email address">
+                    <f:validator validatorId="emailValidator" />
+                </h:inputText>
+                <h:message styleClass="message" for="r_email" />
 
-            <h:outputLabel for="r_confirm" value="Confirm Password:" />
-            <h:inputSecret id="r_confirm" binding="#{confirm}" required="true" 
-                           requiredMessage="Please confirm your password" />
-            <h:message styleClass="message" for="r_confirm" />
-            
-            <h:panelGroup />
-            <h:commandButton id="register" style="float:right;"
-                             value="Register" action="#{register.registerNewUser}">
-                <f:param name="v" value="register" />
-            </h:commandButton>
-            <h:message styleClass="message" for="register" />
-        </h:panelGrid>
-    </h:form>
+                <h:outputLabel for="r_password" value="Password:" />
+                <h:inputSecret id="r_password" value="#{account.PW_Hash}" required="true" 
+                               requiredMessage="Please enter a password">
+                    <f:validator validatorId="passwordValidator" />
+                    <f:attribute name="confirm" value="#{confirm}" />
+                </h:inputSecret>
+                <h:message styleClass="message" for="r_password" />
+
+                <h:outputLabel for="r_confirm" value="Confirm Password:" />
+                <h:inputSecret id="r_confirm" binding="#{confirm}" required="true" 
+                               requiredMessage="Please confirm your password" />
+                <h:message styleClass="message" for="r_confirm" />
+
+                <h:panelGroup />
+                <h:commandButton id="register" style="float:right;"
+                                 value="Register" action="#{register.registerNewUser}">
+                    <f:param name="v" value="register" />
+                </h:commandButton>
+                <h:message styleClass="message" for="register" />
+            </h:panelGrid>
+        </h:form>
     </div> <!-- End Wrapper -->
-    
+
 </ui:composition>

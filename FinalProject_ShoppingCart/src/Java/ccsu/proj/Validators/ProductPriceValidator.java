@@ -14,18 +14,17 @@ import javax.faces.validator.ValidatorException;
 
 /**
  *
- * @author cw1491
+ * @author Jason
  */
-@FacesValidator(value="productValidator")
-public class ProductValidator implements Validator {
+@FacesValidator(value="productPriceValidator")
+public class ProductPriceValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String emailAddress = value.toString();
-        HtmlInputText htmlInputText = (HtmlInputText)component;
+        float price = Float.parseFloat(value.toString());
         
-        if (!emailAddress.matches("[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+")) {
-            FacesMessage facesMessage =  new FacesMessage("Please enter a valid email address");
+        if (price < 0.0f) {
+            FacesMessage facesMessage =  new FacesMessage("Please enter a valid price");
             throw new ValidatorException(facesMessage);
         }
     }

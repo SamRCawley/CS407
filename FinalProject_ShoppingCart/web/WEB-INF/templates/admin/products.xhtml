@@ -100,13 +100,23 @@
                     <h:column><h:panelGroup /></h:column>
 
                     <h:column><h:outputLabel for="ProductName" value="Product Name:" /></h:column>
-                    <h:column><h:inputText id="ProductName" value="#{products.productName}" /></h:column>
+                    <h:column>
+                        <h:inputText id="ProductName" value="#{products.productName}" required="true"
+                                           requiredMessage="Please enter a valid product name">
+                            <f:validator validatorId="productNameValidator" />
+                        </h:inputText>
+                    </h:column>
 
                     <h:column><h:outputLabel for="ProductDescription" value="Product Description:" /></h:column>
                     <h:column><h:inputTextarea id="ProductDescription" value="#{products.description}" /></h:column>
 
                     <h:column><h:outputLabel for="ProductPrice" value="Price:" /></h:column>
-                    <h:column>$<h:inputText id="ProductPrice" value="#{products.price}" /></h:column>
+                    <h:column>
+                        $<h:inputText id="ProductPrice" value="#{products.price}" required="true"
+                                            requiredMessage="Please enter a valid price">
+                            <f:validator validatorId="productPriceValidator" />
+                        </h:inputText>
+                    </h:column>
 
                     <h:column><h:panelGroup /></h:column>
                     <h:column>
