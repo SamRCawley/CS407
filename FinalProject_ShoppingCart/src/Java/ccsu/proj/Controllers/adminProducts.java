@@ -23,7 +23,6 @@ public class adminProducts {
     private EntityManagerFactory entityManagerFactory;
     @Resource
     private UserTransaction userTransaction;
-    @ManagedProperty(value = "#{products}")
     private Products product;   
     private List<Products> collection;
     private int searchNumber;
