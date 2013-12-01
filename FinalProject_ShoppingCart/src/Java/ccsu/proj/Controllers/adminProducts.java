@@ -25,7 +25,7 @@ public class adminProducts {
     private UserTransaction userTransaction;
     @ManagedProperty(value = "#{products}")
     private Products product;   
-    private Collection<Products> collection;
+    private List<Products> collection;
     private int searchNumber;
     private String productname;
     private int selectedCategory;
@@ -87,16 +87,16 @@ public class adminProducts {
         this.product = product;
     }
     public String createProduct(){
-        String returnValue = "product_saved";
+        String returnValue = "error_saving_product";
         try {
             userTransaction.begin();        
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.persist(product);
             userTransaction.commit();
             entityManager.close();
+            returnValue = "product_saved";
         } catch(Exception e) {
             e.printStackTrace();
-            returnValue = "error_saving_product";
         }
         return returnValue;
     }

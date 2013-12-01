@@ -30,6 +30,8 @@ a:link:hover, a:visited:hover  {
 
 li {
     padding: 2px;
+    font-size: 90%;
+    margin-left: -1em;
 }
 
 hr {

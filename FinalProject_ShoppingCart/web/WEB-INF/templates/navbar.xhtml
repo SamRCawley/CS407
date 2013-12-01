@@ -11,8 +11,7 @@
         <ul>
             <li><h:link value='All Products' outcome="index" /></li>
             <c:forEach var="category" items="${productSearch.productCategories}">
-                <li><h:link value="${category.categoryName}" outcome="index">
-                        <f:param name="cat" value="${category.categoryName}"/></h:link></li>
+                <li><h:link value="${category.categoryName}" outcome="index?cat=${category.categoryName}" /></li>
             </c:forEach>
         </ul>
     </div>
@@ -22,15 +21,23 @@
     <div id="cart">
         <h:outputText styleClass="navHeader" value="Store Actions: " />
         <ul>
-            <!-- Link to admin panel. Only shows for and admin --> 
-            <c:if test="${login.account.permission_Level == 1}">
-                <li><h:link value="Admin Panel" outcome="admin" /></li>
-            </c:if>
             <!-- Link to user's cart -->
-            <li><h:link value="Shopping Cart" outcome="index">
-                <f:param name="v" value="cart" />
-            </h:link></li>
+            <li><h:link value="Shopping Cart" outcome="index?v=cart" /></li>
         </ul>
     </div>
+    
+    <!-- Admin links. Only shows for and admin -->
+    <c:if test="${login.account.permission_Level == 1}">
+    
+    <hr />
+    
+    <div id="admin">
+        <h:outputText styleClass="navHeader" value="Admin Panel: " />
+        <ul>
+            <li><h:link value="Manage Orders" outcome="index?v=manage_orders" /></li>
+            <li><h:link value="Manage Products" outcome="index?v=manage_products" /></li>
+        </ul>
+    </div>
+    </c:if>
     
 </ui:composition>

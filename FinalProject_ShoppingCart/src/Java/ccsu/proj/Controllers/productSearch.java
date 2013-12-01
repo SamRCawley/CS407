@@ -47,8 +47,8 @@ public class productSearch {
         String selectSQL = "select p from Products p where p.productName like :name AND EXISTS(SELECT c.categoryName  FROM p.categories c WHERE c.categoryName like :category)"; 
         try {
             Query selectQuery = entityManager.createQuery(selectSQL);
-            selectQuery.setParameter("name", product.getProductName()+ "%");
-            selectQuery.setParameter("category", category +"%");
+            selectQuery.setParameter("name", product.getProductName() + "%");
+            selectQuery.setParameter("category", category + "%");
             products = selectQuery.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +73,6 @@ public class productSearch {
         return product;
     }
 
-   
     public void setProduct(Products product) {
         this.product = product;
     }

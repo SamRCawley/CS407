@@ -18,9 +18,7 @@
                 <h:inputSecret id="password" styleClass="password" value="${account.PW_Hash}" />
                 <h:commandButton action="#{login.validateAccount}" value="Login" />
                 <br/><br/>
-                <h:link outcome="index.xhtml" value="Don't have an account?">
-                    <f:param name="v" value="register" />
-                </h:link>
+                <h:link value="Don't have an account?" outcome="index?v=register" />
             </h:form>
         </c:when>
         <c:otherwise>

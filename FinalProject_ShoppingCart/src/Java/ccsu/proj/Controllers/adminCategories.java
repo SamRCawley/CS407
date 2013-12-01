@@ -24,7 +24,7 @@ public class adminCategories {
     private UserTransaction userTransaction;
     @ManagedProperty(value = "#{categories}")
     private Categories categories;   
-    private Collection<Categories> collection;
+    private List<Categories> collection;
     private int searchNumber;
     private String categoryname;
     
@@ -32,55 +32,55 @@ public class adminCategories {
         this.searchNumber = searchNumber;
         searchByNumber();
     }
+    
     public int getSearchNumber() {
         return searchNumber;
     }
-    public void searchByNumber() {
+    
+    public List searchByNumber() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery("Categories.byID");        
         query.setParameter("number", searchNumber);
         collection = query.getResultList();
+        
+        return collection;
     }
+    
     public void setSearchCategoryName(String categoryname) {
         this.categoryname = categoryname + "%";
         searchByCategoryName();
     }
+    
     public String getSearchCategoryName(){
         return categoryname;
     }
-    public void searchByCategoryName() {
+    
+    public List searchByCategoryName() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery("Categories.byName");        
         query.setParameter("categoryname", categoryname);
         collection = query.getResultList();
+        
+        return collection;
     }
+    
     public Collection<Categories> getCollection() {
         return collection;
     }
+    
     public List<Categories> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Query query = entityManager.createNamedQuery("Categories.findAll");
-        List<Categories> all = query.getResultList();        
-        return all;
+        collection = query.getResultList();  
+        
+        return collection;
     }
+    
     public Categories getCategories() {
         return categories;
     }   
+    
     public void setCategories(Categories categories) {
         this.categories = categories;
-    }
-    public String createCategory(){
-        String returnValue = "category_saved";
-        try {
-            userTransaction.begin();        
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
-            entityManager.persist(categories);
-            userTransaction.commit();
-            entityManager.close();
-        } catch(Exception e) {
-            e.printStackTrace();
-            returnValue = "error_saving_category";
-        }
-        return returnValue;
     }
 }

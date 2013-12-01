@@ -37,6 +37,12 @@
                         <c:when test="#{param['v'] == 'confirmation'}">
                             <ui:include src="/WEB-INF/templates/confirmation.xhtml" />
                         </c:when>
+                        <c:when test="#{param['v'] == 'manage_orders' and login.account.permission_Level eq 1}">
+                            <ui:include src="/WEB-INF/templates/admin/orders.xhtml" />
+                        </c:when>
+                        <c:when test="#{param['v'] == 'manage_products' and login.account.permission_Level eq 1}">
+                            <ui:include src="/WEB-INF/templates/admin/products.xhtml" />
+                        </c:when>
                         <c:otherwise>
                             <ui:include src="/WEB-INF/templates/products.xhtml" />
                         </c:otherwise>
