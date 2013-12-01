@@ -10,12 +10,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -29,6 +32,11 @@ import javax.persistence.Transient;
 @ManagedBean
 @Entity
 @Table(name="Products")
+@ViewScoped
+@NamedQueries({
+    @NamedQuery(name = "Products.findAll", query = "SELECT p FROM Products p"),
+    @NamedQuery(name = "Products.byID", query = "SELECT p FROM Products p WHERE p.id = :number"),
+    @NamedQuery(name = "Products.byName", query = "SELECT p FROM Products p WHERE p.productName LIKE :productname")})
 public class Products implements Serializable {
 
     @Id
