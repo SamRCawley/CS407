@@ -97,6 +97,27 @@ public class adminProducts {
     public void setProduct(Products product) {
         this.product = product;
     }
+    public void loadProduct() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        product = entityManager.find(Products.class, product.getID());
+        entityManager.close();
+    }
+    public String updateProduct() {
+        String returnValue = "error_saving_product";
+        try {
+            
+            userTransaction.begin();
+            EntityManager entityManager = entityManagerFactory.createEntityManager();            
+            entityManager.merge(product);
+            userTransaction.commit();
+            entityManager.close();
+            
+            returnValue = "index";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return returnValue;
+    }
 
     public String createProduct() {
         String returnValue = "error_saving_product";
