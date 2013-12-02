@@ -79,7 +79,7 @@ public class Account implements Serializable {
         return permission_level;
     }
     
-    public void setPermission_Level(String permission_level) {
-        this.permission_level = Short.parseShort(permission_level);
+    public void setPermission_Level(short permission_level) {
+        this.permission_level = permission_level;
     } 
 }

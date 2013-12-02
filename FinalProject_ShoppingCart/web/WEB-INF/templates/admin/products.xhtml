@@ -23,7 +23,7 @@
                     <f:ajax event="keyup" render="productDatatable" />
                 </h:inputText>
             </div>
-            
+
             <div class="productGrid">
                 <h:dataTable styleClass="datatable" id="productDatatable"
                              value="#{adminProducts.collection}" var="product">
@@ -101,7 +101,8 @@
                 <h:column>
                     <h:selectManyMenu id="allCategories" value="#{adminProducts.product.categories}" converter="#{categoriesConverter}">
                         <f:selectItems value="#{adminCategories.getAll()}"/> 
-                    </h:selectManyMenu></h:column>
+                    </h:selectManyMenu>
+                </h:column>
                 <h:column><h:outputLabel for="ProductDescription" value="Product Description:" /></h:column>
                 <h:column><h:inputTextarea id="ProductDescription" value="#{adminProducts.product.description}" /></h:column>
 

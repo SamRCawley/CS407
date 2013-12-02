@@ -100,7 +100,7 @@
 
                     <h:column><h:outputLabel for='Permission' value='Permission Level:' /></h:column>
                     <h:column>
-                        <h:selectOneRadio id="Permissions" value="#{adminAccounts.account.permission_Level}">
+                        <h:selectOneRadio id="Permissions" value="#{adminAccounts.account.permission_Level}" converter="javax.faces.Short">
                             <f:selectItem itemLabel="User" itemValue="0" />
                             <f:selectItem itemLabel="Admin" itemValue="1" />
                         </h:selectOneRadio>
@@ -108,13 +108,13 @@
                     <h:column><h:panelGroup /></h:column>
 
                     <h:column><h:panelGroup /></h:column>
-                    <h:column><h:panelGroup /></h:column>
                     <h:column>
                         <h:commandButton id="AddAccount" style="float:right;"
                                          value="Add Account" action="#{adminAccounts.registerNewUser}">
                             <f:param name="v" value="manage_accounts" />
                         </h:commandButton>
                     </h:column>
+                    <h:column><h:panelGroup /></h:column>
 
                 </h:panelGrid>
             </h:form>
