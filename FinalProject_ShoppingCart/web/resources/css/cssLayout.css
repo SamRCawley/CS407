@@ -12,6 +12,7 @@
     background-color: #c2dfef;
     padding: 5px;
     margin: 10px 0px 0px 0px;
+    clear: both; /* clears 5px padding, but will push footer */
 }
 
 #left {
