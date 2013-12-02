@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -40,6 +41,7 @@ import javax.persistence.Transient;
 public class Products implements Serializable {
 
     @Id
+    @GeneratedValue
     @Column(name="ID")
     private int id = 0;
     
