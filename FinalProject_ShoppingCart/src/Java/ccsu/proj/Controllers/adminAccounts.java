@@ -55,7 +55,7 @@ public class adminAccounts implements Serializable {
             em.persist(account);
             userTransaction.commit();
             em.close();
-            returnValue = "success";
+            returnValue = "index";
         } catch (Exception e) {
             e.printStackTrace();
         }
