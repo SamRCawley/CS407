@@ -36,7 +36,7 @@ public class Account implements Serializable {
     private String pw_hash = null;
     
     @Column(name="PERMISSION_LEVEL")
-    private short permission_level = 0;
+    private Short permission_level = 0;
     
     public Account() {
     }
@@ -79,7 +79,7 @@ public class Account implements Serializable {
         return permission_level;
     }
     
-    public void setPermission_Level(short permission_level) {
+    public void setPermission_Level(Short permission_level) {
         this.permission_level = permission_level;
     } 
 }

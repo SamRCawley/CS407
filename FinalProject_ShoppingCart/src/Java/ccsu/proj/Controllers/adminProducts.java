@@ -88,7 +88,7 @@ public class adminProducts {
     public String createProduct(){
         String returnValue = "error_saving_product";
         try {
-            //incrementProductID();
+            incrementProductID();
             userTransaction.begin();        
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             entityManager.persist(product);
