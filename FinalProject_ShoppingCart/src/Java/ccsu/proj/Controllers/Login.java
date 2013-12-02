@@ -28,7 +28,7 @@ public class Login implements Serializable {
     @PersistenceUnit(unitName="FinalProject_ShoppingCartPU")
     private EntityManagerFactory entityManagerFactory;
     @ManagedProperty(value = "#{account}")
-    private Account account;
+    private Account account = new Account();
     
     public boolean usernameExists() {
         List<Account> accounts = new ArrayList();

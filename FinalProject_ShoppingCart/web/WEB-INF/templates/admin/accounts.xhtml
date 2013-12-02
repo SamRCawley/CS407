@@ -58,10 +58,12 @@
                             <f:param name="v" value="manage_accounts" />
                             <f:param name="id" value="#{s_account.ID}" />
                         </h:commandButton>
-                        <h:commandButton value="Delete" action="#{adminAccounts.removeAccount()}">
-                            <f:param name="v" value="manage_accounts" />
-                            <f:param name="id" value="#{s_account.ID}" />
-                        </h:commandButton>
+                        <c:if test="#{login.account.ID ne s_account.ID}">
+                            <h:commandButton value="Delete" action="#{adminAccounts.removeAccount()}">
+                                <f:param name="v" value="manage_accounts" />
+                                <f:param name="id" value="#{s_account.ID}" />
+                            </h:commandButton>
+                        </c:if>
                     </h:column>
                 </h:dataTable>
             </h:form>
