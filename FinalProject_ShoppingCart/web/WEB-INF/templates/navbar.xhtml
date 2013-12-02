@@ -14,7 +14,11 @@
                     <f:actionListener binding="#{navigation.setView(null)}"/>
                 </h:commandLink></li>
             <c:forEach var="category" items="${productSearch.productCategories}">
-                <li><h:commandLink action="#{navigation.setCategory(category.categoryName)}" value="${category.categoryName}"><f:actionListener binding="#{navigation.setView(null)}"/></h:commandLink></li>
+                <li>
+                    <h:commandLink action="#{navigation.setCategory(category.categoryName)}" value="${category.categoryName}">
+                        <f:actionListener binding="#{navigation.setView(null)}"/>
+                    </h:commandLink>
+                </li>
             </c:forEach>
         </ul>
     </div>

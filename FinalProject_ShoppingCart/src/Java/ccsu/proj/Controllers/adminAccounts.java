@@ -8,10 +8,9 @@ import ccsu.proj.Model.Account;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -76,14 +75,9 @@ public class adminAccounts implements Serializable {
 
         account.setID(newID);
     }
-
-    public String editAccount() {
-        String returnValue = "error";
-
-        return returnValue;
-    }
-
-    public String removeAccount() {
+    
+    //Removed to prevent orphaned orders
+    /*public String removeAccount() {
         String returnValue = "error";
         try {
             userTransaction.begin();
@@ -100,13 +94,13 @@ public class adminAccounts implements Serializable {
             e.printStackTrace();
         }
         return returnValue;
-    }
+    }*/
 
     public void setAccount(Account account) {
         this.account = account;
     }
 
     public Account getAccount() {
-        return this.account;
+        return account;
     }
 }
