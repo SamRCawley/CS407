@@ -16,7 +16,7 @@
                 <h:inputText id="username" styleClass="username" value="${account.username}" />
                 <h:outputLabel for="password" value="Password: " />
                 <h:inputSecret id="password" styleClass="password" value="${account.PW_Hash}" />
-                <h:commandButton action="#{login.validateAccount}" value="Login" />
+                <h:commandButton action="#{login.validateAccount(navigation)}" value="Login" />
                 <br/><br/>
                 <h:commandLink action="#{navigation.setView('register')}" value="Don't have an account?" />
             </h:form>

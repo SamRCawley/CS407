@@ -48,7 +48,7 @@ public class Login implements Serializable {
             return false;
     }
     
-    public String validateAccount() {
+    public String validateAccount(Navigation navigation) {
         List<Account> accounts = new ArrayList();
         if(usernameExists()) {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -67,7 +67,11 @@ public class Login implements Serializable {
                 account = accounts.get(0);
                 return "index";
             } else return "invalidPass";
-        } else return "index?faces-redirect=true&v=register";
+        } else
+        {
+            navigation.setView("register");
+            return "index";
+        }
     }
     
     public void logout() {

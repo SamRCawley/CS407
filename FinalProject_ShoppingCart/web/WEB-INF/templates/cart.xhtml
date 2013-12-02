@@ -76,7 +76,7 @@
                         <f:convertNumber type="currency"/> 
                     </h:outputText>
                     <br/><br/>
-                    <h:commandButton value="Submit Order" action="#{shoppingCart.finalizeOrder(login.account)}" />
+                    <h:commandButton value="Submit Order" action="#{shoppingCart.finalizeOrder(login.account, navigation)}" />
                 </div>
             </c:if>
         </div>

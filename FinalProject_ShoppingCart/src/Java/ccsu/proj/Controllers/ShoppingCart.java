@@ -67,11 +67,12 @@ public class ShoppingCart implements Serializable {
         cart.clear();
     }
 
-    public String finalizeOrder(Account account) {
+    public String finalizeOrder(Account account, Navigation navigation) {
         String result = "error";
         int id = account.getID();
         if (id == 0) {
-            result = "index?faces-redirect=true&v=register";
+            navigation.setView("register");
+            result = "index";
         } else {
             Orders order = new Orders();
             Set<OrdersProducts> ordersProducts = new HashSet();
@@ -95,7 +96,8 @@ public class ShoppingCart implements Serializable {
                 }
                 userTransaction.commit();
                 em.close();
-                result = "index?faces-redirect=true&v=confirmation";
+                navigation.setView("confirmation");
+                result = "index";
             } catch (Exception e) {
                 e.printStackTrace();
             }

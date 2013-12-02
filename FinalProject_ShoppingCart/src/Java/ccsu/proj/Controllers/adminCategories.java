@@ -89,7 +89,7 @@ public class adminCategories {
             entityManager.persist(categories);
             userTransaction.commit();
             entityManager.close();
-            returnValue = "category_saved";
+            returnValue = "index";
         } catch (Exception e) {
             e.printStackTrace();
         }

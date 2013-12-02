@@ -42,7 +42,7 @@ public class Register implements Serializable {
             em.persist(account);
             userTransaction.commit();
             em.close();
-            returnValue = "index?faces-redirect=true";
+            returnValue = "index";
         } catch (Exception e) {
             e.printStackTrace();
         }
