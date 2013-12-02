@@ -89,19 +89,25 @@
 
                 <h:column><h:messages styleClass="message" /></h:column>
                 <h:column><h:panelGroup /></h:column>
-
+                
+                <h:column><h:outputLabel for="ProductName" value="Product ID (UPDATE ONLY):" /></h:column>
+                <h:column>
+                    <h:inputText id="ProductID" value="#{adminProducts.product.ID}">
+                        <f:ajax event="keyup" listener="#{adminProducts.loadProduct}" render="ProductName allCategories ProductDescription ProductPrice"/>
+                    </h:inputText>
+                </h:column>
                 <h:column><h:outputLabel for="ProductName" value="Product Name:" /></h:column>
                 <h:column>
                     <h:inputText id="ProductName" value="#{adminProducts.product.productName}" required="true"
                                  requiredMessage="Please enter a valid product name">
-                        <f:validator validatorId="productNameValidator" />
+                        <!--<f:validator validatorId="productNameValidator" />-->
                     </h:inputText>
                 </h:column>
                 <h:column><h:outputLabel value="Categories"/></h:column>
                 <h:column>
-                    <h:selectManyMenu id="allCategories" value="#{adminProducts.product.categories}" converter="#{categoriesConverter}">
+                    <h:selectManyListbox id="allCategories" value="#{adminProducts.product.categories}" converter="#{categoriesConverter}">
                         <f:selectItems value="#{adminCategories.getAll()}"/> 
-                    </h:selectManyMenu>
+                    </h:selectManyListbox>
                 </h:column>
                 <h:column><h:outputLabel for="ProductDescription" value="Product Description:" /></h:column>
                 <h:column><h:inputTextarea id="ProductDescription" value="#{adminProducts.product.description}" /></h:column>
@@ -113,8 +119,11 @@
                         <f:validator validatorId="productPriceValidator" />
                     </h:inputText>
                 </h:column>
-
-                <h:column><h:panelGroup /></h:column>
+                <h:column>
+                    <h:commandButton style='float: right;' value="Update Product"
+                                     action="#{adminProducts.updateProduct()}">
+                    </h:commandButton>
+                </h:column>
                 <h:column>
                     <h:commandButton style='float: right;' value="Save Product"
                                      action="#{adminProducts.createProduct()}">
